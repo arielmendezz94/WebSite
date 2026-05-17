@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariel Mendez — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #111111;
+    --ink-2: #444444;
+    --ink-3: #888888;
+    --rule: #e0e0e0;
+    --blue: #1d4ed8;
+    --blue-light: #eef4ff;
+    --page: #fafaf8;
+    --warm: #f5f0eb;
+    --white: #ffffff;
+    --green: #15803d;
+    --green-light: #f0fdf4;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e2ddd6;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+
+  .screen-wrapper { max-width: 860px; margin: 0 auto; }
+
+  /* ── TOP NAV ── */
+  .top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .nav-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #7a7168;
+  }
+
+  .nav-tabs {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.4);
+    padding: 4px;
+    border-radius: 8px;
+  }
+
+  .nav-tab {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #7a7168;
+    border: none;
+    background: transparent;
+    transition: all 0.2s ease;
+  }
+
+  .nav-tab.active { background: var(--white); color: var(--ink); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+  .nav-tab:hover:not(.active) { background: rgba(255,255,255,0.5); color: var(--ink-2); }
+
+  /* ── PAGE ── */
+  .page {
+    background: var(--page);
+    width: 100%;
+    padding: 56px 64px;
+    position: relative;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15), 0 2px 8px rgba(0,0,0,0.06);
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--ink);
+  }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── HEADER ── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding-bottom: 22px;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 26px;
+  }
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+
+  .name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .role { font-size: 13px; color: var(--ink-2); margin-top: 5px; }
+
+  .contact-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+    text-align: right;
+  }
+
+  /* ── SECTION RULE ── */
+  .section-rule {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+  .section-line { flex: 1; height: 1px; background: var(--rule); }
+
+  /* ── CASE TITLE ── */
+  .case-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+  .case-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    max-width: 560px;
+    margin-bottom: 24px;
+  }
+  .case-title em { font-style: italic; color: var(--ink-2); }
+
+  /* ── CONTEXT BAR ── */
+  .context-bar { display: flex; background: var(--ink); margin-bottom: 26px; }
+  .context-item {
+    flex: 1; padding: 11px 14px;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .context-item:last-child { border-right: none; }
+  .context-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 3px;
+  }
+  .context-value { font-size: 11.5px; font-weight: 600; color: #fff; line-height: 1.3; }
+
+  /* ── BEFORE / AFTER ── */
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+  .before-block { background: var(--warm); padding: 16px; border-left: 3px solid #c9b99a; }
+  .after-block { background: var(--blue-light); padding: 16px; border-left: 3px solid var(--blue); }
+  .ba-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+  .before-block .ba-label { color: #9a8060; }
+  .after-block .ba-label { color: var(--blue); }
+  .ba-list { list-style: none; }
+  .ba-list li { font-size: 11.5px; color: var(--ink-2); line-height: 1.5; padding-left: 12px; position: relative; margin-bottom: 5px; }
+  .ba-list li::before { content: '—'; position: absolute; left: 0; color: var(--ink-3); font-size: 10px; }
+
+  /* ── BUILD GRID ── */
+  .build-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-bottom: 22px; }
+
+  .build-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 12px 13px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+  }
+  .build-item:hover { border-color: var(--ink-3); box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+  .build-item.expanded { border-color: var(--ink); grid-column: span 2; }
+
+  .expand-hint {
+    position: absolute; top: 10px; right: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px; color: var(--ink-3); letter-spacing: 1px;
+  }
+
+  .build-num { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500; color: var(--ink-3); flex-shrink: 0; margin-top: 1px; width: 16px; }
+  .build-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 3px; line-height: 1.3; }
+  .build-desc { font-size: 11px; color: var(--ink-2); line-height: 1.45; }
+  .build-example { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--rule); }
+  .build-item.expanded .build-example { display: block; }
+
+  .example-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+  .example-content { font-size: 11.5px; color: var(--ink-2); line-height: 1.6; }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: #1e1e2e; color: #cdd6f4;
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px; padding: 12px 16px;
+    border-radius: 4px; margin-top: 10px;
+    line-height: 1.6; overflow-x: auto;
+  }
+  .code-block .kw { color: #cba6f7; }
+  .code-block .fn { color: #89b4fa; }
+  .code-block .str { color: #a6e3a1; }
+  .code-block .cm { color: #6c7086; }
+  .code-block .num { color: #fab387; }
+
+  /* ── OUTCOMES ── */
+  .outcomes-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 22px; }
+  .outcome-item { text-align: center; padding: 14px 8px; border-top: 2px solid var(--ink); transition: background 0.2s; cursor: default; }
+  .outcome-item:hover { background: var(--warm); }
+  .outcome-number { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--ink); line-height: 1; display: block; margin-bottom: 5px; }
+  .outcome-label { font-size: 10px; color: var(--ink-2); line-height: 1.4; }
+  .outcome-tooltip { font-size: 10px; color: var(--ink-3); font-style: italic; margin-top: 5px; display: none; }
+  .outcome-item:hover .outcome-tooltip { display: block; }
+
+  /* ── ARCH ── */
+  .arch-strip { display: flex; align-items: center; margin-bottom: 22px; }
+  .arch-node { flex: 1; padding: 10px 8px; text-align: center; transition: background 0.2s; cursor: default; }
+  .arch-node:hover { background: #e0d8ce !important; }
+  .arch-node:nth-child(odd) { background: #f0ede8; }
+  .arch-node:nth-child(even) { background: #e8e4de; }
+  .arch-arrow-node { flex: 0 0 18px; text-align: center; font-size: 13px; color: var(--ink-3); }
+  .arch-node-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 3px; }
+  .arch-node-value { font-size: 10px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+
+  /* ── STACK ── */
+  .stack-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+  .stack-tag { font-family: 'DM Mono', monospace; font-size: 10px; padding: 4px 10px; border: 1px solid var(--rule); color: var(--ink-2); background: var(--white); cursor: default; transition: all 0.15s; }
+  .stack-tag:hover { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* ── EXAMPLES PANEL ── */
+  .example-card { background: var(--white); border: 1px solid var(--rule); margin-bottom: 16px; }
+  .example-card-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; transition: background 0.2s; }
+  .example-card-header:hover { background: var(--warm); }
+  .example-card-header.open { background: var(--ink); }
+  .example-card-header.open .ex-title { color: white; }
+  .example-card-header.open .ex-tag { background: rgba(255,255,255,0.15); color: white; }
+  .example-card-header.open .ex-toggle { color: white; transform: rotate(45deg); }
+  .ex-title { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .ex-meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .ex-tag { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 9px; background: var(--warm); color: var(--ink-3); }
+  .ex-toggle { font-size: 16px; color: var(--ink-3); font-weight: 300; transition: transform 0.2s; }
+  .example-card-body { display: none; padding: 20px 18px; border-top: 1px solid var(--rule); }
+  .example-card-body.open { display: block; }
+  .ex-body-text { font-size: 12.5px; color: var(--ink-2); line-height: 1.65; margin-bottom: 14px; }
+  .ex-result { background: var(--green-light); border-left: 3px solid var(--green); padding: 12px 16px; font-size: 12px; color: var(--green); font-weight: 500; margin-top: 12px; }
+
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 22px; }
+  .about-block { background: var(--white); border: 1px solid var(--rule); padding: 18px 20px; }
+  .about-block-title { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
+  .timeline-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .timeline-year { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--blue); flex-shrink: 0; width: 32px; margin-top: 2px; }
+  .timeline-text { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
+  .timeline-text strong { color: var(--ink); }
+  .skill-section { margin-bottom: 14px; }
+  .skill-category { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+  .skill-pill { font-size: 11px; padding: 3px 9px; border: 1px solid var(--rule); color: var(--ink-2); background: var(--warm); }
+
+  /* ── FOOTER ── */
+  .footer { display: flex; align-items: center; justify-content: space-between; padding-top: 16px; border-top: 1px solid var(--rule); margin-top: 8px; }
+  .footer-left { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ink-3); }
+  .footer-cta { font-size: 11.5px; font-weight: 600; color: var(--ink); }
+
+  /* ── HINT ── */
+  .hint-bar { text-align: center; margin-top: 14px; opacity: 0; animation: fadeUp 0.5s ease 0.7s forwards; }
+  .hint-bar span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: #9a9088; }
+</style>
+</head>
+<body>
+<div class="screen-wrapper">
+
+  <!-- NAV -->
+  <div class="top-nav">
+    <div class="nav-label">Ariel Mendez &nbsp;·&nbsp; Portfolio</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="switchTab('overview', this)">Overview</button>
+      <button class="nav-tab" onclick="switchTab('examples', this)">Work Examples</button>
+      <button class="nav-tab" onclick="switchTab('about', this)">Background</button>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ═══════════════════════ OVERVIEW ═══════════════════════ -->
+    <div class="panel active" id="panel-overview">
+
+      <div class="header reveal">
+        <div class="header-left">
+          <div class="label">Portfolio Case Study</div>
+          <div class="name">Ariel Mendez</div>
+          <div class="role">Data & Business Intelligence Leader &nbsp;·&nbsp; Fintech &nbsp;·&nbsp; SaaS</div>
+        </div>
+        <div class="header-right">
+          <div class="contact-line">
+            ariel.mendez.z94@gmail.com<br>
+            Buenos Aires &nbsp;·&nbsp; Open to relocation<br>
+            Available from January 2025
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="case-eyebrow">Case Study &nbsp;·&nbsp; Global Fintech Platform &nbsp;·&nbsp; 2021 – Jan 2025</div>
+        <div class="case-title">Building a Company's Entire Data Stack <em>from Zero</em> —<br>and Deploying AI on Top of It</div>
+      </div>
+
+      <div class="context-bar reveal">
+        <div class="context-item"><div class="context-label">Sector</div><div class="context-value">Fintech / Investment Banking</div></div>
+        <div class="context-item"><div class="context-label">Scale</div><div class="context-value">400+ firms · 850+ users</div></div>
+        <div class="context-item"><div class="context-label">Deal Volume</div><div class="context-value">$200B+ pipeline managed</div></div>
+        <div class="context-item"><div class="context-label">Duration</div><div class="context-value">4 years end-to-end</div></div>
+        <div class="context-item"><div class="context-label">Team</div><div class="context-value">Solo → Led team of 6</div></div>
+      </div>
+
+      <div class="section-rule reveal"><div class="section-label">The Situation</div><div class="section-line"></div></div>
+
+      <div class="before-after reveal">
+        <div class="before-block">
+          <div class="ba-label">Before &nbsp;·&nbsp; 2021</div>
+          <ul class="ba-list">
+            <li>No data infrastructure. Zero.</li>
+            <li>Finance, Sales & CS each had their own ARR number — all different</li>
+            <li>80+ employees with no access to data. Everything via Slack requests</li>
+            <li>Compliance tracking done manually in spreadsheets</li>
+            <li>CEO making decisions from manually-assembled weekly decks</li>
+            <li>Churn discovered <em>after</em> the renewal conversation failed</li>
+          </ul>
+        </div>
+        <div class="after-block">
+          <div class="ba-label">After &nbsp;·&nbsp; Jan 2025</div>
+          <ul class="ba-list">
+            <li>Full medallion stack: 9 source systems → Snowflake → BI layer</li>
+            <li>One ARR number. One owner. Auditable SQL behind every figure</li>
+            <li>80+ non-technical users self-serving via AI natural language queries</li>
+            <li>86.7% automated compliance completion across 850+ reps</li>
+            <li>CEO sees live ARR, pipeline, GRR, runway — refreshed weekly</li>
+            <li>CS gets churn alerts before the renewal call. GRR: 93% → 98%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-rule reveal"><div class="section-label">What I Built &nbsp;·&nbsp; Click any card to expand</div><div class="section-line"></div></div>
+
+      <div class="build-grid reveal" id="build-grid">
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">01</div>
+          <div class="build-content">
+            <div class="build-title">The Full Data Stack</div>
+            <div class="build-desc">Ingestion, warehouse, transformation, BI. 9 sources. 7 domains. Built from zero.</div>
+            <div class="build-example">
+              <div class="example-label">Example — Architecture decision</div>
+              <div class="example-content">Evaluated and selected Hevo (ingestion), Snowflake (warehouse), dbt (transformation), Sigma (BI) — negotiated all contracts. Designed a 3-layer medallion: RAW (23 schemas) → STAGING → PRODUCTION → SELF_SERVICE. Stack went live within 6 months.</div>
+              <div class="code-block"><span class="cm">-- 3-layer medallion in dbt_project.yml</span>
+<span class="kw">models</span>:
+  finalis_wh:
+    FINALIS_RAW:      <span class="cm"># Bronze — raw ingestion</span>
+      PORTAL: {+materialized: <span class="str">incremental</span>}
+    FINALIS_STAGING:  <span class="cm"># Silver — cleaned & joined</span>
+      MASTER: {+materialized: <span class="str">table</span>}
+    FINALIS_DB:       <span class="cm"># Gold — governed metrics</span>
+      SELF_SERVICE: {+materialized: <span class="str">view</span>}</div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">02</div>
+          <div class="build-content">
+            <div class="build-title">Governed Semantic Layer</div>
+            <div class="build-desc">~50 KPIs in version-controlled SQL. One definition, one owner, one variance threshold per metric.</div>
+            <div class="build-example">
+              <div class="example-label">Example — MRR movement model</div>
+              <div class="example-content">Finance, Sales, and CS all had different ARR numbers. I wrote a single SQL definition per metric. The MRR model classifies each customer's monthly change into Net New, Expansion, Downgrade, or Churn — and injects a synthetic next-month zero row to catch delayed churn signals before they show in renewals.</div>
+              <div class="code-block"><span class="cm">-- SaaS MRR movement per customer per month</span>
+<span class="kw">CASE WHEN</span> COALESCE(past_amount,<span class="num">0</span>) = <span class="num">0</span>
+  <span class="kw">AND</span> current_amount > <span class="num">0</span>
+<span class="kw">THEN</span> current_amount
+<span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END AS</span> Net_New_MRR,
+
+<span class="cm">-- Annualised bookings from new + expansion</span>
+(Net_New_MRR + Expansion_MRR) * <span class="num">12</span>
+  <span class="kw">AS</span> actuals_bookings</div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">03</div>
+          <div class="build-content">
+            <div class="build-title">CEO & ELT Weekly Dashboard</div>
+            <div class="build-desc">Live ARR (multimillion+), pipeline ($2B+), GRR, NRR, runway. Replaced 4 manual reports on day one.</div>
+            <div class="build-example">
+              <div class="example-label">Example — What the CEO sees every Monday</div>
+              <div class="example-content">Built a Sigma dashboard refreshing weekly from Snowflake. Every metric links to auditable SQL. Covers: ARR, qualified pipeline by stage, new logos booked, GRR%, NRR%, commissions revenue, deals closed, deal cycle time, DAU/MAU stickiness, cash runway, headcount, and flight risk %. Four teams stopped producing competing slide decks the week it went live.</div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">04</div>
+          <div class="build-content">
+            <div class="build-title">AI Natural Language Layer</div>
+            <div class="build-desc">Snowflake Cortex Analyst over the semantic model. 80+ non-technical users query data in plain English.</div>
+            <div class="build-example">
+              <div class="example-label">Example — What a non-technical user now asks</div>
+              <div class="example-content">Deployed Snowflake Cortex Analyst (CHATBI) on the SELF_SERVICE schema. A Capital Markets manager types "Which firms closed the most deals last quarter?" and gets a live result. Before: that question took 2 days and a Slack thread. The accuracy was high from day one because the semantic layer definitions were already enforced in SQL — no ambiguity for the model to hallucinate around.</div>
+              <div class="code-block"><span class="cm">-- Cortex generates this from plain English:</span>
+<span class="cm">-- "Top firms by revenue last 6 months"</span>
+<span class="kw">SELECT</span> firm_name,
+  <span class="fn">SUM</span>(deal_gross_fee)  <span class="kw">AS</span> total_fees,
+  <span class="fn">COUNT</span>(deal_id)       <span class="kw">AS</span> deals_closed
+<span class="kw">FROM</span> SELF_SERVICE.DEALS
+<span class="kw">WHERE</span> closing_date >= DATEADD(<span class="str">'month'</span>,-<span class="num">6</span>,CURRENT_DATE)
+  <span class="kw">AND</span> deal_status = <span class="str">'WON'</span>
+<span class="kw">GROUP BY</span> <span class="num">1</span> <span class="kw">ORDER BY</span> <span class="num">2</span> <span class="kw">DESC LIMIT</span> <span class="num">10</span></div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">05</div>
+          <div class="build-content">
+            <div class="build-title">Churn & Escalation Intelligence</div>
+            <div class="build-desc">360° customer signals into a sentiment engine. GRR improved 93% → 98% QoQ after deployment.</div>
+            <div class="build-example">
+              <div class="example-label">Example — How the early warning worked</div>
+              <div class="example-content">Combined login frequency, deal activity, form completion rates, support escalations, and billing status into a weekly churn score per firm. CS received a Monday alert list ranked by risk. High-risk firms got a proactive call before their renewal date — not after the conversation had already failed. GRR improved from 93.1% to 98.2% within two quarters.</div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+        <div class="build-item" onclick="toggleBuild(this)">
+          <div class="build-num">06</div>
+          <div class="build-content">
+            <div class="build-title">Compliance Surveillance System</div>
+            <div class="build-desc">Automated FINRA attestations for 850+ reps. 9-policy email keyword detection. 86.7% completion rate.</div>
+            <div class="build-example">
+              <div class="example-label">Example — Email policy flagging in dbt</div>
+              <div class="example-content">Built a dbt model parsing all archived emails from Smarsh via Snowpipe, running 9 regulatory policy keyword checks — complaints, AML signals, insider info, poaching, off-channel comms. Each email gets a boolean flag per policy. Compliance reviews flagged emails only, not all of them.</div>
+              <div class="code-block"><span class="cm">-- Policy 5: AML language detection</span>
+<span class="fn">REGEXP_SUBSTR</span>(body,
+  <span class="str">'(Cash only deal|Shell company|</span>
+<span class="str">   Wire from offshore|Untraceable funds)'</span>,
+  <span class="num">1</span>, <span class="num">1</span>, <span class="str">'i'</span>
+) <span class="kw">AS</span> policy5_keyword,
+
+<span class="kw">CASE WHEN</span> policy5_keyword <span class="kw">IS NOT NULL</span>
+  <span class="kw">THEN true ELSE false</span>
+<span class="kw">END AS</span> policy5_flag</div>
+            </div>
+          </div>
+          <div class="expand-hint">+ expand</div>
+        </div>
+
+      </div><!-- end build-grid -->
+
+      <div class="section-rule reveal"><div class="section-label">Architecture at a Glance</div><div class="section-line"></div></div>
+
+      <div class="arch-strip reveal">
+        <div class="arch-node"><div class="arch-node-label">Sources</div><div class="arch-node-value">Salesforce · Stripe · Airtable · Hub · QuickBooks · Smarsh</div></div>
+        <div class="arch-arrow-node">→</div>
+        <div class="arch-node"><div class="arch-node-label">Ingestion</div><div class="arch-node-value">Hevo + AWS Snowpipe</div></div>
+        <div class="arch-arrow-node">→</div>
+        <div class="arch-node"><div class="arch-node-label">Warehouse</div><div class="arch-node-value">Snowflake 3-layer medallion</div></div>
+        <div class="arch-arrow-node">→</div>
+        <div class="arch-node"><div class="arch-node-label">Transform</div><div class="arch-node-value">dbt · Semantic Layer</div></div>
+        <div class="arch-arrow-node">→</div>
+        <div class="arch-node"><div class="arch-node-label">Consume</div><div class="arch-node-value">Sigma BI + Cortex AI Agent</div></div>
+      </div>
+
+      <div class="section-rule reveal"><div class="section-label">Outcomes &nbsp;·&nbsp; Hover for context</div><div class="section-line"></div></div>
+
+      <div class="outcomes-row reveal">
+        <div class="outcome-item">
+          <span class="outcome-number">4</span>
+          <div class="outcome-label">manual reporting streams eliminated on launch week</div>
+          <div class="outcome-tooltip">Finance, Sales, CS & Ops replaced by one governed dashboard.</div>
+        </div>
+        <div class="outcome-item">
+          <span class="outcome-number">80%+</span>
+          <div class="outcome-label">reduction in manual data requests via AI self-service</div>
+          <div class="outcome-tooltip">Capital Markets & Sales Ops now query in plain English, zero analyst needed.</div>
+        </div>
+        <div class="outcome-item">
+          <span class="outcome-number">93→98%</span>
+          <div class="outcome-label">GRR after churn intelligence deployed</div>
+          <div class="outcome-tooltip">CS moved from reactive renewals to proactive churn intervention.</div>
+        </div>
+        <div class="outcome-item">
+          <span class="outcome-number">$0</span>
+          <div class="outcome-label">cost overruns across 4 budget cycles on six-figure stack</div>
+          <div class="outcome-tooltip">Full ownership: vendor selection, negotiation, monitoring, optimisation.</div>
+        </div>
+      </div>
+
+      <div class="section-rule reveal"><div class="section-label">Stack Used &nbsp;·&nbsp; Hover any tag</div><div class="section-line"></div></div>
+
+      <div class="stack-row reveal">
+        <span class="stack-tag">Snowflake</span><span class="stack-tag">Cortex Analyst</span>
+        <span class="stack-tag">dbt</span><span class="stack-tag">Hevo</span>
+        <span class="stack-tag">AWS Snowpipe</span><span class="stack-tag">Sigma Computing</span>
+        <span class="stack-tag">Salesforce</span><span class="stack-tag">Stripe</span>
+        <span class="stack-tag">Airtable</span><span class="stack-tag">SQL</span>
+        <span class="stack-tag">Python</span><span class="stack-tag">Streamlit</span><span class="stack-tag">n8n</span>
+      </div>
+
+      <div class="footer reveal">
+        <div class="footer-left">ariel mendez &nbsp;·&nbsp; data & bi leader &nbsp;·&nbsp; available jan 2025</div>
+        <div class="footer-cta">Head of Data &nbsp;·&nbsp; Director of Analytics &nbsp;·&nbsp; Senior BI Manager</div>
+      </div>
+
+    </div><!-- end overview -->
+
+
+    <!-- ═══════════════════════ EXAMPLES ═══════════════════════ -->
+    <div class="panel" id="panel-examples">
+
+      <div class="header reveal">
+        <div class="header-left">
+          <div class="label">Work Examples</div>
+          <div class="name">Three Problems. Three Solutions.</div>
+          <div class="role">Real situations from 4 years building a fintech data stack</div>
+        </div>
+        <div class="header-right">
+          <div class="contact-line">ariel.mendez.z94@gmail.com<br>Available from January 2025</div>
+        </div>
+      </div>
+
+      <div class="example-card reveal">
+        <div class="example-card-header" onclick="toggleExample(this)">
+          <div class="ex-title">Problem 1 — Three teams, three ARR numbers. Nobody trusted the data.</div>
+          <div class="ex-meta"><span class="ex-tag">Metric Governance</span><span class="ex-toggle">+</span></div>
+        </div>
+        <div class="example-card-body">
+          <div class="ex-body-text"><strong>The situation:</strong> Finance calculated ARR from Stripe. Sales from Salesforce opportunity amounts. CS from a manual spreadsheet. All three different every week. Every business review opened with a 20-minute argument about the number before anyone discussed strategy.</div>
+          <div class="ex-body-text"><strong>What I did:</strong> Traced all three calculations to their source systems. Found the discrepancies: Finance used billing date, Sales used close date, CS included non-recurring fees. Wrote a single SQL definition — sourced from Stripe, adjusted for deferrals, filtered to active recurring plans. Added a named owner, a ±2% variance threshold, and a weekly audit that flagged deviations automatically.</div>
+          <div class="code-block"><span class="cm">-- Official ARR — version-controlled in dbt</span>
+<span class="cm">-- Owner: Finance · Threshold: ±2% week-over-week</span>
+<span class="kw">SELECT</span>
+  customer_id, firm_name,
+  mrr * <span class="num">12</span>                      <span class="kw">AS</span> arr,
+  <span class="fn">COALESCE</span>(arr_yr_1, arr_yr2)  <span class="kw">AS</span> arr_last_year,
+  commissions_rate, plan, renewal_date
+<span class="kw">FROM</span> finance.parameter_subscription
+<span class="kw">WHERE</span> month <span class="kw">IS NOT NULL</span>
+  <span class="kw">AND</span> __hevo__marked_deleted = <span class="kw">FALSE</span></div>
+          <div class="ex-result">✓ Result: Metric disputes stopped. The CEO dashboard launched with a single ARR figure. Four teams stopped producing competing versions within the first week.</div>
+        </div>
+      </div>
+
+      <div class="example-card reveal">
+        <div class="example-card-header" onclick="toggleExample(this)">
+          <div class="ex-title">Problem 2 — Customer Success finding out about churn after it happened.</div>
+          <div class="ex-meta"><span class="ex-tag">Churn Intelligence</span><span class="ex-toggle">+</span></div>
+        </div>
+        <div class="example-card-body">
+          <div class="ex-body-text"><strong>The situation:</strong> CS reps only knew a client was at risk when the renewal conversation failed. Login frequency had dropped months earlier, deal activity had slowed, support tickets had increased. Nobody was watching those signals because they lived in five different systems.</div>
+          <div class="ex-body-text"><strong>What I did:</strong> Built a unified customer-360 model pulling signals from five sources: platform login frequency (Hub), deal activity (Airtable), form completion rates (Portal), support escalations (Intercom), billing status (Stripe). Weighted signals into a churn score per firm, updated weekly. CS received a ranked Monday alert list. High-risk firms got a proactive call before the renewal date.</div>
+          <div class="ex-body-text"><strong>Signals used:</strong> Days since last login · Active deals count · Form completion rate · Open escalations · Overdue invoices · DAU/MAU trend (last 30 vs prior 30 days)</div>
+          <div class="ex-result">✓ Result: GRR improved from 93.1% to 98.2% within two quarters. CS shifted from reactive renewal calls to proactive account health management.</div>
+        </div>
+      </div>
+
+      <div class="example-card reveal">
+        <div class="example-card-header" onclick="toggleExample(this)">
+          <div class="ex-title">Problem 3 — 80 people needed data daily. None of them could write SQL.</div>
+          <div class="ex-meta"><span class="ex-tag">AI Self-Service</span><span class="ex-toggle">+</span></div>
+        </div>
+        <div class="example-card-body">
+          <div class="ex-body-text"><strong>The situation:</strong> Capital Markets managers, Sales Ops, and CS reps needed data every day. None could query Snowflake. Every request went through the data team via Slack. The team was spending 40%+ of their time on repetitive ad-hoc questions instead of building.</div>
+          <div class="ex-body-text"><strong>What I did:</strong> Deployed Snowflake Cortex Analyst on top of the governed SELF_SERVICE schema. Users type questions in plain English. Cortex generates SQL, runs it, returns results. The key: because the semantic layer was already clean and governed, the AI answers were accurate from day one. No hallucinations about metric definitions — those were enforced at the model level before the AI ever touched them.</div>
+          <div class="ex-body-text"><strong>Example questions users now answer themselves:</strong> "Which firms have the most active deals this month?" &nbsp;·&nbsp; "Show bankers with no deal activity in 60 days" &nbsp;·&nbsp; "What's our GRR trend last 6 quarters?" &nbsp;·&nbsp; "Which industries have the highest average deal size?"</div>
+          <div class="ex-result">✓ Result: 80+ non-technical users onboarded to self-service analytics. Manual data requests dropped 80%+. The team redirected that time to building new models.</div>
+        </div>
+      </div>
+
+      <div class="footer reveal" style="margin-top:24px;">
+        <div class="footer-left">ariel mendez &nbsp;·&nbsp; data & bi leader &nbsp;·&nbsp; available jan 2025</div>
+        <div class="footer-cta">ariel.mendez.z94@gmail.com</div>
+      </div>
+
+    </div><!-- end examples -->
+
+
+    <!-- ═══════════════════════ ABOUT ═══════════════════════ -->
+    <div class="panel" id="panel-about">
+
+      <div class="header reveal">
+        <div class="header-left">
+          <div class="label">Background</div>
+          <div class="name">Ariel Mendez</div>
+          <div class="role">10 years building data systems across fintech, FMCG, and financial services</div>
+        </div>
+        <div class="header-right">
+          <div class="contact-line">ariel.mendez.z94@gmail.com<br>Buenos Aires · Open to relocation<br>Available from January 2025</div>
+        </div>
+      </div>
+
+      <div class="about-grid reveal">
+        <div class="about-block">
+          <div class="about-block-title">Career Timeline</div>
+          <div class="timeline-item"><div class="timeline-year">2013</div><div class="timeline-text"><strong>American Express</strong> — Business Analyst. Built the department's first VBA automation suite for volume forecasting and workforce planning.</div></div>
+          <div class="timeline-item"><div class="timeline-year">2019</div><div class="timeline-text"><strong>American Express</strong> — Senior BI Developer. Migrated global capacity tracking from Excel to Hadoop & Tableau. Managed global capacity data for 110+ countries.</div></div>
+          <div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-text"><strong>American Express</strong> — AML Team Lead. Managed 14 analysts. Led regulatory process migration to Buenos Aires hub for LACC & EMEA regions.</div></div>
+          <div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text"><strong>Baufest / Givaudan</strong> — Senior BI Consultant then BI Technical Owner. Enterprise Power BI on Azure/AWS, SAP pipelines, Looker migration. $15k+ cost avoidance delivered.</div></div>
+          <div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text"><strong>Global Fintech Platform</strong> — BI Lead → Data & BI Manager. Built entire stack from zero. Grew team from 1 to 6. 7 domains. 850+ users.</div></div>
+          <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-text"><strong>Available now</strong> — Open to Head of Data, Director of Analytics, or Senior BI Manager roles in fintech or high-growth SaaS.</div></div>
+        </div>
+
+        <div class="about-block">
+          <div class="about-block-title">Skills by Category</div>
+          <div class="skill-section">
+            <div class="skill-category">Core Data</div>
+            <div class="skill-pills">
+              <span class="skill-pill">SQL (Expert)</span><span class="skill-pill">dbt modeling</span>
+              <span class="skill-pill">Semantic layers</span><span class="skill-pill">Data warehousing</span>
+              <span class="skill-pill">ETL/ELT</span><span class="skill-pill">Master data mgmt</span>
+            </div>
+          </div>
+          <div class="skill-section">
+            <div class="skill-category">Platforms</div>
+            <div class="skill-pills">
+              <span class="skill-pill">Snowflake + Cortex</span><span class="skill-pill">Sigma</span>
+              <span class="skill-pill">Power BI / DAX</span><span class="skill-pill">Tableau</span>
+              <span class="skill-pill">Hevo</span><span class="skill-pill">Salesforce</span><span class="skill-pill">Python</span>
+            </div>
+          </div>
+          <div class="skill-section">
+            <div class="skill-category">Domain</div>
+            <div class="skill-pills">
+              <span class="skill-pill">SaaS metrics (ARR/NRR/GRR)</span>
+              <span class="skill-pill">Fintech</span><span class="skill-pill">RevOps</span>
+              <span class="skill-pill">AML/KYC</span><span class="skill-pill">FINRA compliance</span>
+              <span class="skill-pill">Customer 360</span>
+            </div>
+          </div>
+          <div class="skill-section">
+            <div class="skill-category">Leadership</div>
+            <div class="skill-pills">
+              <span class="skill-pill">Team of 6 managed</span>
+              <span class="skill-pill">C-level stakeholders</span>
+              <span class="skill-pill">Vendor negotiation</span>
+              <span class="skill-pill">Budget ownership</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer reveal">
+        <div class="footer-left">ariel mendez &nbsp;·&nbsp; data & bi leader &nbsp;·&nbsp; available jan 2025</div>
+        <div class="footer-cta">Head of Data &nbsp;·&nbsp; Director of Analytics &nbsp;·&nbsp; Senior BI Manager</div>
+      </div>
+
+    </div><!-- end about -->
+
+  </div><!-- end .page -->
+
+  <div class="hint-bar">
+    <span>Click cards to expand &nbsp;·&nbsp; Hover outcomes for context &nbsp;·&nbsp; Switch tabs to explore</span>
+  </div>
+
+</div><!-- end screen-wrapper -->
+
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + tab).classList.add('active');
+    btn.classList.add('active');
+    // reset and re-trigger reveals
+    document.querySelectorAll('.reveal').forEach(el => el.classList.remove('visible'));
+    setTimeout(triggerReveals, 60);
+  }
+
+  function toggleBuild(el) {
+    const grid = document.getElementById('build-grid');
+    const wasExpanded = el.classList.contains('expanded');
+    grid.querySelectorAll('.build-item').forEach(item => {
+      item.classList.remove('expanded');
+      item.querySelector('.expand-hint').textContent = '+ expand';
+    });
+    if (!wasExpanded) {
+      el.classList.add('expanded');
+      el.querySelector('.expand-hint').textContent = '— close';
+    }
+  }
+
+  function toggleExample(header) {
+    const body = header.nextElementSibling;
+    const wasOpen = header.classList.contains('open');
+    document.querySelectorAll('.example-card-header').forEach(h => h.classList.remove('open'));
+    document.querySelectorAll('.example-card-body').forEach(b => b.classList.remove('open'));
+    if (!wasOpen) { header.classList.add('open'); body.classList.add('open'); }
+  }
+
+  function triggerReveals() {
+    const activePanel = document.querySelector('.panel.active');
+    if (!activePanel) return;
+    activePanel.querySelectorAll('.reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 70);
+    });
+  }
+
+  window.addEventListener('load', () => setTimeout(triggerReveals, 200));
+</script>
+
+</body>
+</html>
