@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariel Mendez — Case Study</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --ink: #111111;
+    --ink-2: #444444;
+    --ink-3: #888888;
+    --rule: #e0e0e0;
+    --accent: #1a1a1a;
+    --blue: #1d4ed8;
+    --page: #fafaf8;
+    --white: #ffffff;
+  }
+
+  html { font-size: 15px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #e8e6e1;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .page {
+    background: var(--page);
+    width: 794px;
+    min-height: 1123px;
+    padding: 64px 72px;
+    position: relative;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  /* Left accent bar */
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--ink);
+  }
+
+  /* ── HEADER ── */
+  .header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .header-left {}
+
+  .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+
+  .name {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .role {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  .header-right {
+    text-align: right;
+  }
+
+  .contact-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-3);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CASE TITLE ── */
+  .case-title-block {
+    margin-bottom: 28px;
+  }
+
+  .case-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+
+  .case-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 21px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    max-width: 520px;
+  }
+
+  .case-title em {
+    font-style: italic;
+    color: var(--ink-2);
+  }
+
+  /* ── CONTEXT BAR ── */
+  .context-bar {
+    display: flex;
+    gap: 0;
+    background: var(--ink);
+    margin-bottom: 28px;
+  }
+
+  .context-item {
+    flex: 1;
+    padding: 12px 16px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .context-item:last-child { border-right: none; }
+
+  .context-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+  }
+
+  .context-value {
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  /* ── BODY GRID ── */
+  .body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 24px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 24px;
+  }
+
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── BEFORE/AFTER ── */
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .before-block {
+    background: #f5f0eb;
+    padding: 16px;
+    border-left: 3px solid #c9b99a;
+  }
+
+  .after-block {
+    background: #eef4ff;
+    padding: 16px;
+    border-left: 3px solid var(--blue);
+  }
+
+  .ba-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .before-block .ba-label { color: #9a8060; }
+  .after-block .ba-label { color: var(--blue); }
+
+  .ba-list {
+    list-style: none;
+  }
+
+  .ba-list li {
+    font-size: 12px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    padding-left: 12px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .ba-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-3);
+    font-size: 10px;
+  }
+
+  /* ── WHAT I BUILT ── */
+  .build-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .build-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 12px 14px;
+    border: 1px solid var(--rule);
+    background: var(--white);
+  }
+
+  .build-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ink-3);
+    flex-shrink: 0;
+    margin-top: 1px;
+    width: 16px;
+  }
+
+  .build-content {}
+
+  .build-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .build-desc {
+    font-size: 11px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .outcome-item {
+    text-align: center;
+    padding: 14px 10px;
+    border-top: 2px solid var(--ink);
+  }
+
+  .outcome-number {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .outcome-label {
+    font-size: 10px;
+    color: var(--ink-2);
+    line-height: 1.4;
+  }
+
+  /* ── ARCHITECTURE ── */
+  .arch-strip {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .arch-node {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    position: relative;
+  }
+
+  .arch-node:nth-child(odd) { background: #f0ede8; }
+  .arch-node:nth-child(even) { background: #e8e4de; }
+
+  .arch-arrow-node {
+    flex: 0 0 20px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--ink-3);
+    background: transparent;
+    padding: 0;
+  }
+
+  .arch-node-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 3px;
+  }
+
+  .arch-node-value {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  /* ── QUOTE ── */
+  .quote-block {
+    border-left: 3px solid var(--ink);
+    padding: 14px 20px;
+    margin-bottom: 24px;
+    background: var(--white);
+  }
+
+  .quote-text {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+
+  .quote-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 8px;
+  }
+
+  /* ── STACK TAGS ── */
+  .stack-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .stack-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--rule);
+    color: var(--ink-2);
+    background: var(--white);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    margin-top: auto;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .footer-cta {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.3px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <div class="label">Portfolio Case Study</div>
+      <div class="name">Ariel Mendez</div>
+      <div class="role">Data & Business Intelligence Leader &nbsp;·&nbsp; Fintech &nbsp;·&nbsp; SaaS</div>
+    </div>
+    <div class="header-right">
+      <div class="contact-line">
+        ariel.mendez.z94@gmail.com<br>
+        Buenos Aires &nbsp;·&nbsp; Open to relocation<br>
+        linkedin.com/in/ariel-mendez
+      </div>
+    </div>
+  </div>
+
+  <!-- CASE EYEBROW + TITLE -->
+  <div class="case-title-block">
+    <div class="case-eyebrow">Case Study &nbsp;·&nbsp; Finalis Inc. &nbsp;·&nbsp; 2021 – Present</div>
+    <div class="case-title">Building a Company's Entire Data Stack <em>from Zero</em> — and Deploying AI on Top of It</div>
+  </div>
+
+  <!-- CONTEXT BAR -->
+  <div class="context-bar">
+    <div class="context-item">
+      <div class="context-label">Company</div>
+      <div class="context-value">Finalis Inc.</div>
+    </div>
+    <div class="context-item">
+      <div class="context-label">Sector</div>
+      <div class="context-value">Fintech / Investment Banking</div>
+    </div>
+    <div class="context-item">
+      <div class="context-label">Scale</div>
+      <div class="context-value">406 firms · 851 users · $227B pipeline</div>
+    </div>
+    <div class="context-item">
+      <div class="context-label">Duration</div>
+      <div class="context-value">4 years (still live)</div>
+    </div>
+    <div class="context-item">
+      <div class="context-label">My Role</div>
+      <div class="context-value">Solo → Team of 6</div>
+    </div>
+  </div>
+
+  <!-- BEFORE / AFTER -->
+  <div class="section-rule">
+    <div class="section-label">The Situation</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="before-after">
+    <div class="before-block">
+      <div class="ba-label">Before &nbsp;·&nbsp; 2021</div>
+      <ul class="ba-list">
+        <li>No data infrastructure. Zero.</li>
+        <li>Finance, Sales & CS each had their own ARR number — all different</li>
+        <li>80+ employees with no access to data. Everything was Slack requests</li>
+        <li>Compliance tracking done manually in spreadsheets</li>
+        <li>CEO making decisions from weekly manually-assembled slide decks</li>
+        <li>Churn discovered <em>after</em> the renewal conversation failed</li>
+      </ul>
+    </div>
+    <div class="after-block">
+      <div class="ba-label">After &nbsp;·&nbsp; 2025</div>
+      <ul class="ba-list">
+        <li>Full medallion data stack: 9 source systems → Snowflake → BI layer</li>
+        <li>One ARR number. One owner. Auditable SQL behind every figure</li>
+        <li>80+ non-technical users self-serving via natural language AI queries</li>
+        <li>86.7% automated compliance completion across 850+ registered reps</li>
+        <li>CEO sees live ARR, pipeline, GRR, runway — refreshed weekly</li>
+        <li>CS gets churn alerts before the renewal call. GRR: 93% → 98%</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- WHAT I BUILT -->
+  <div class="section-rule" style="margin-top:4px;">
+    <div class="section-label">What I Built</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="build-grid">
+    <div class="build-item">
+      <div class="build-num">01</div>
+      <div class="build-content">
+        <div class="build-title">The Full Data Stack</div>
+        <div class="build-desc">Ingestion (Hevo + Snowpipe), warehouse (Snowflake), transformation (dbt), BI (Sigma). 9 source systems. 7 business domains. Built from scratch.</div>
+      </div>
+    </div>
+    <div class="build-item">
+      <div class="build-num">02</div>
+      <div class="build-content">
+        <div class="build-title">Governed Semantic Layer</div>
+        <div class="build-desc">~50 KPIs version-controlled in SQL. Every metric has one definition, one owner, one variance threshold. Ended cross-team metric disputes permanently.</div>
+      </div>
+    </div>
+    <div class="build-item">
+      <div class="build-num">03</div>
+      <div class="build-content">
+        <div class="build-title">CEO & ELT Dashboard</div>
+        <div class="build-desc">Weekly live view of ARR ($8.5M+), qualified pipeline ($2.3B+), GRR, NRR, bookings, runway. Replaced 4 manual reporting streams on day one.</div>
+      </div>
+    </div>
+    <div class="build-item">
+      <div class="build-num">04</div>
+      <div class="build-content">
+        <div class="build-title">AI Natural Language Layer</div>
+        <div class="build-desc">Deployed Snowflake Cortex Analyst over the semantic layer. 80+ non-technical users now query data in plain English. Cut manual data requests by 80%+.</div>
+      </div>
+    </div>
+    <div class="build-item">
+      <div class="build-num">05</div>
+      <div class="build-content">
+        <div class="build-title">Churn & Escalation Intelligence</div>
+        <div class="build-desc">Unified 360° customer signals into a sentiment engine with churn classifiers. CS now intervenes proactively. GRR improved 93.1% → 98.2% QoQ.</div>
+      </div>
+    </div>
+    <div class="build-item">
+      <div class="build-num">06</div>
+      <div class="build-content">
+        <div class="build-title">Compliance Surveillance System</div>
+        <div class="build-desc">Automated FINRA attestation workflows for 850+ registered reps. Email surveillance via Smarsh with 9-policy keyword detection. 86.7% completion rate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE STRIP -->
+  <div class="section-rule">
+    <div class="section-label">Architecture at a Glance</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="arch-strip" style="margin-bottom: 20px;">
+    <div class="arch-node">
+      <div class="arch-node-label">Sources</div>
+      <div class="arch-node-value">Salesforce · Stripe · Airtable · Hub · QuickBooks · Smarsh</div>
+    </div>
+    <div class="arch-arrow-node">→</div>
+    <div class="arch-node">
+      <div class="arch-node-label">Ingestion</div>
+      <div class="arch-node-value">Hevo + AWS Snowpipe</div>
+    </div>
+    <div class="arch-arrow-node">→</div>
+    <div class="arch-node">
+      <div class="arch-node-label">Warehouse</div>
+      <div class="arch-node-value">Snowflake (3-layer medallion)</div>
+    </div>
+    <div class="arch-arrow-node">→</div>
+    <div class="arch-node">
+      <div class="arch-node-label">Transform</div>
+      <div class="arch-node-value">dbt · Semantic Layer</div>
+    </div>
+    <div class="arch-arrow-node">→</div>
+    <div class="arch-node">
+      <div class="arch-node-label">Consume</div>
+      <div class="arch-node-value">Sigma BI + Cortex AI Agent</div>
+    </div>
+  </div>
+
+  <!-- OUTCOMES -->
+  <div class="section-rule">
+    <div class="section-label">Outcomes</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="outcomes-row">
+    <div class="outcome-item">
+      <span class="outcome-number">4</span>
+      <div class="outcome-label">manual reporting streams eliminated on launch week</div>
+    </div>
+    <div class="outcome-item">
+      <span class="outcome-number">80%+</span>
+      <div class="outcome-label">reduction in manual data requests via AI self-service</div>
+    </div>
+    <div class="outcome-item">
+      <span class="outcome-number">93→98%</span>
+      <div class="outcome-label">GRR improvement after churn intelligence deployed</div>
+    </div>
+    <div class="outcome-item">
+      <span class="outcome-number">$0</span>
+      <div class="outcome-label">cost overruns across 4 budget cycles on $30k annual stack</div>
+    </div>
+  </div>
+
+  <!-- STACK -->
+  <div class="section-rule">
+    <div class="section-label">Stack Used</div>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="stack-row">
+    <span class="stack-tag">Snowflake</span>
+    <span class="stack-tag">Cortex Analyst</span>
+    <span class="stack-tag">dbt</span>
+    <span class="stack-tag">Hevo</span>
+    <span class="stack-tag">AWS Snowpipe</span>
+    <span class="stack-tag">Sigma Computing</span>
+    <span class="stack-tag">Salesforce</span>
+    <span class="stack-tag">Stripe</span>
+    <span class="stack-tag">Airtable</span>
+    <span class="stack-tag">SQL</span>
+    <span class="stack-tag">Python</span>
+    <span class="stack-tag">Streamlit</span>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">ariel mendez &nbsp;·&nbsp; data & bi leader &nbsp;·&nbsp; 2025</div>
+    <div class="footer-cta">Open to Head of Data · Director of Analytics · Senior BI Manager roles</div>
+  </div>
+
+</div>
+
+</body>
+</html>
