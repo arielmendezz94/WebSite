@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obligaciones y Contratos — Resumen</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --paper: #f7f5f0;
+    --accent: #2d5fa6;
+    --accent-light: #e8eff9;
+    --rule: #d0c9bc;
+    --muted: #6b6560;
+    --tag-bg: #2d5fa6;
+    --tag-text: #fff;
+    --highlight: #fff3cd;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .book-header {
+    background: var(--ink);
+    color: #fff;
+    padding: 56px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .book-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(255,255,255,.04) 39px,
+      rgba(255,255,255,.04) 40px
+    );
+  }
+  .book-header .eyebrow {
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #8da8d4;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .book-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    line-height: 1.15;
+    position: relative;
+  }
+  .book-header h1 span {
+    color: #8da8d4;
+  }
+
+  /* ── TOC STRIP ── */
+  .toc-strip {
+    background: var(--accent);
+    padding: 0 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .toc-strip a {
+    color: rgba(255,255,255,.78);
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 14px 20px 14px 0;
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .toc-strip a:hover { color: #fff; border-color: rgba(255,255,255,.6); }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 40px 96px;
+  }
+
+  /* ── CHAPTER LABEL ── */
+  .chapter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 2px solid var(--ink);
+  }
+  .chapter:first-of-type { margin-top: 0; border-top: none; padding-top: 0; }
+  .chapter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    line-height: 1;
+    color: var(--accent);
+    min-width: 56px;
+    text-align: center;
+  }
+  .chapter-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  /* ── SECTION ── */
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin: 40px 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3.sub-title {
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--accent);
+    margin: 28px 0 10px;
+  }
+
+  p { margin-bottom: 12px; }
+
+  /* ── DEFINITION CARD ── */
+  .def-card {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    padding: 18px 22px;
+    border-radius: 0 6px 6px 0;
+    margin: 18px 0 24px;
+    font-size: 14.5px;
+  }
+  .def-card strong { color: var(--accent); }
+
+  /* ── INFO GRID (2-col) ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .info-box {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .info-box .label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .info-box .value {
+    font-size: 14.5px;
+  }
+
+  /* ── ELEMENTS LIST ── */
+  .elements-list {
+    counter-reset: el;
+    list-style: none;
+    margin: 16px 0 24px;
+  }
+  .elements-list > li {
+    counter-increment: el;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .elements-list > li::before {
+    content: counter(el);
+    background: var(--ink);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .elements-list > li .el-content { flex: 1; }
+  .elements-list > li .el-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+
+  /* ── BULLET LIST ── */
+  .blist {
+    list-style: none;
+    margin: 10px 0 16px 4px;
+  }
+  .blist li {
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 7px;
+    font-size: 14.5px;
+  }
+  .blist li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── NESTED BLIST ── */
+  .blist .blist {
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  .blist .blist li::before { content: '·'; color: var(--muted); }
+
+  /* ── ALPHA LIST ── */
+  .alist {
+    list-style: none;
+    margin: 10px 0 16px 4px;
+    counter-reset: al;
+  }
+  .alist li {
+    counter-increment: al;
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 8px;
+    font-size: 14.5px;
+  }
+  .alist li::before {
+    content: counter(al, lower-alpha) ')';
+    position: absolute;
+    left: 0;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* ── TAG PILL ── */
+  .tag {
+    display: inline-block;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .tag.soft {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .note-box {
+    background: var(--highlight);
+    border-left: 4px solid #e6a817;
+    padding: 14px 18px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+
+  /* ── DIVIDER ── */
+  hr.thin { border: none; border-top: 1px solid var(--rule); margin: 28px 0; }
+
+  /* ── CHARACTERS TABLE ── */
+  .chars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .char-pill {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 13.5px;
+  }
+  .char-pill strong {
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  /* ── TWO-PART OBLIGATIONS ── */
+  .oblig-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  @media (max-width: 640px) { .oblig-cols { grid-template-columns: 1fr; } }
+  .oblig-col {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 18px 20px;
+  }
+  .oblig-col h4 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 680px) {
+    .book-header { padding: 40px 24px 28px; }
+    .toc-strip { padding: 0 24px; }
+    .main { padding: 40px 20px 60px; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="book-header">
+  <p class="eyebrow">Universidad Argentina de la Empresa · Resumen Completo</p>
+  <h1>Obligaciones <span>&</span> Contratos</h1>
+</header>
+
+<nav class="toc-strip">
+  <a href="#obligaciones">Obligaciones</a>
+  <a href="#efectos">Efectos</a>
+  <a href="#clases">Clases</a>
+  <a href="#extincion">Extinción</a>
+  <a href="#contratos">Contratos</a>
+  <a href="#compraventa">Compraventa</a>
+  <a href="#donacion">Donación</a>
+  <a href="#locacion">Locación</a>
+  <a href="#otros">Otros Contratos</a>
+</nav>
+
+<main class="main">
+
+  <!-- ═══════════════════════════════════ OBLIGACIONES ═══ -->
+  <div class="chapter" id="obligaciones">
+    <div class="chapter-num">I</div>
+    <div class="chapter-title">Obligaciones</div>
+  </div>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Vinculo o relación jurídica entre 2 o mas personas, lo cual una de las partes debe cumplir una prestación a favor de la otra. Dicho contenido, tiene un valor patrimonial (afecta a los bienes de la persona).
+  </div>
+
+  <h2 class="section-title">Elementos</h2>
+
+  <ol class="elements-list">
+    <li>
+      <div class="el-content">
+        <div class="el-title">Sujeto</div>
+        <p>Es una parte deudora y otra acreedora (o también pluralidad de sujetos).</p>
+        <h3 class="sub-title">Requisitos</h3>
+        <ul class="blist">
+          <li><strong>Existencia:</strong> Deben existir al comienzo de la obligación (ya sea persona física o jurídica.)</li>
+          <li><strong>Determinación:</strong> Deben estar individualizadas al comienzo.</li>
+        </ul>
+      </div>
+    </li>
+    <li>
+      <div class="el-content">
+        <div class="el-title">Objeto</div>
+        <p>Acto o contenido de la obligación.</p>
+        <div class="info-grid">
+          <div class="info-box"><div class="label">De Dar</div><div class="value">Entrega de algo</div></div>
+          <div class="info-box"><div class="label">De Hacer</div><div class="value">Prestación de servicio</div></div>
+          <div class="info-box"><div class="label">De No Hacer</div><div class="value">Me abstengo de alguna conducta</div></div>
+        </div>
+        <h3 class="sub-title">Requisitos del Objeto</h3>
+        <ol class="alist">
+          <li><strong>Determinación:</strong> El objeto debe estar determinado al comienzo de la obligación.
+            <ul class="blist">
+              <li><strong>Determinado:</strong> Ej.: Depto. 1er piso, nº 305</li>
+              <li><strong>Determinable:</strong> Objeto de genero y especie. (perro de 3 meses, blanco…)</li>
+            </ul>
+          </li>
+          <li><strong>Posibilidad:</strong> Debe ser un objeto posible desde lo físico a lo jurídico. Ej.: Comprar una plaza publica.</li>
+          <li><strong>Valor económico:</strong> Debe ser apreciable de dinero o avalúo.</li>
+        </ol>
+      </div>
+    </li>
+    <li>
+      <div class="el-content">
+        <div class="el-title">Causa / Fuente</div>
+        <ul class="blist">
+          <li><strong>Ley:</strong> Norma general que sanciona el Estado con potestad de legislar. (Es de carácter obligatorio.)</li>
+          <li><strong>Contrato:</strong> Acuerdo de voluntades entre las partes con contenido económico. Celebran para regular sus derechos y obligaciones que deben cumplir como si fuera la propia ley.</li>
+          <li><strong>Cuasicontrato:</strong> no hubo acuerdo previo. Una de las partes realiza a favor de otro, la gestión de un negocio o el empleo útil de dinero.</li>
+          <li><strong>Delito:</strong> Acto ilícito que se realiza con dolo. (Con intención de dañar). Ej.: Homicidio.</li>
+          <li><strong>Cuasidelito:</strong> Acto ilícito sin intención de hacer daño. (con culpa o negligencia)</li>
+        </ul>
+        <div class="note-box">Cualquiera de la causa/fuente, tienen que ser licita, sino, no hay obligación.</div>
+      </div>
+    </li>
+  </ol>
+
+  <!-- ═══════════════════════════════════ EFECTOS ═══ -->
+  <div class="chapter" id="efectos">
+    <div class="chapter-num">II</div>
+    <div class="chapter-title">Efectos de las Obligaciones</div>
+  </div>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Consecuencia jurídica que producen las obligaciones.
+  </div>
+
+  <h2 class="section-title">Efectos Principales</h2>
+
+  <h3 class="sub-title">Normales</h3>
+  <ul class="blist">
+    <li>Cuando el deudor cumple voluntariamente</li>
+    <li>Cuando el deudor cumple por acción judicial (ejecución directa)</li>
+  </ul>
+
+  <h3 class="sub-title">Anormales</h3>
+  <p>Se producen en toda obligación y en todas las partes de la obligación. Afectan a las partes y también pueden afectar a herederos de alguna de las partes. (La obligación de hacer personalísima no pasa a los herederos).</p>
+  <p>La prestación acordada no se cumple. Se paga una indemnización por daños y perjuicios.</p>
+
+  <h3 class="sub-title">Requisitos para la Indemnización</h3>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Mora del deudor</div>
+      <div class="value">No cumple la prestación y sin causa que lo justifique.
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Con interpelación:</strong> La mora se produce cuando el acreedor exige el cumplimiento.</li>
+          <li><strong>Sin interpelación:</strong> La mora se produce por el solo vencimiento del plazo.
+            <ul class="blist">
+              <li>Plazo expreso: (la mora es automática)</li>
+              <li>Plazo tácito: (la mora surge de la propia naturaleza)</li>
+              <li>Sin plazo: Lo fija el juez.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Responsabilidad del deudor</div>
+      <div class="value">El incumplimiento del deudor debe ser imputable al deudor.
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Dolo:</strong> No cumple teniendo medios para hacerlo.</li>
+          <li><strong>Culpa:</strong> Actúa con imprudencia o negligencia.</li>
+        </ul>
+        <p style="margin-top:8px"><strong>Excepciones:</strong> Caso fortuito / Fuerza mayor</p>
+        <p><em>(El daño lo evalúa el juez)</em></p>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Daños sufridos por el acreedor</div>
+      <div class="value">
+        <ul class="blist">
+          <li><strong>Material / patrimonial:</strong>
+            <ul class="blist">
+              <li>Emergentes: La perdida que sufre el deudor por el incumplimiento.</li>
+              <li>Lucro cesante: Lo que deja de percibir el acreedor.</li>
+            </ul>
+          </li>
+          <li><strong>Moral:</strong> Daños que la persona sufre en sus sentimientos.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Relación de causalidad</div>
+      <div class="value">Debe probar la relación del incumplimiento con el daño ocasionado.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Cláusula Penal</h2>
+  <p>El acreedor y el deudor estipulan una suma de dinero que el deudor deberá pagar al acreedor para el caso que no se cumpla la obligación o se retarde en el incumplimiento.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ol class="alist">
+    <li><strong>Accesoria:</strong> Rige cuando no se cumple la oblig. Principal.</li>
+    <li><strong>Subsidiaria:</strong> Al cumplir la cláusula, se extingue la oblg. Principal.</li>
+    <li><strong>Condicional:</strong> Sucede ante el incumplimiento.</li>
+    <li><strong>Inmutable:</strong> Lo que se pacto se debe pagar.</li>
+  </ol>
+  <div class="note-box">El código civil autoriza al juez a reducir la cláusula cuando es desproporcionado.</div>
+
+  <h2 class="section-title">Efectos Secundarios</h2>
+  <p>Se produce respecto a 3ras personas que puedan estar involucradas en la obligación.</p>
+  <ul class="blist">
+    <li><strong>Acreedor del deudor:</strong> (Contrae nuevas deudas)</li>
+    <li><strong>Acreedor del acreedor:</strong> (Le conviene que este tenga nuevos créditos que deba cobrar.)</li>
+  </ul>
+
+  <h3 class="sub-title">Tipos de Acreedores</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Privilegiados general</strong>Sobre todos los bienes del deudor</div>
+    <div class="char-pill"><strong>Privilegiados especial</strong>Sobre determinados bienes del deudor</div>
+    <div class="char-pill"><strong>Comunes o quirografarios</strong>No tienen ningún privilegio. Vienen después de los privilegiados.</div>
+  </div>
+
+  <h3 class="sub-title">Bienes excluidos de la garantía común</h3>
+  <ul class="blist">
+    <li>Inmuebles como bien de familia</li>
+    <li>Herramientas de trabajo</li>
+    <li>Mascotas</li>
+    <li>Sepulcros</li>
+    <li>Muebles básicos de un hogar</li>
+    <li>etc.…</li>
+  </ul>
+
+  <!-- ═══════════════════════════════════ CLASES ═══ -->
+  <div class="chapter" id="clases">
+    <div class="chapter-num">III</div>
+    <div class="chapter-title">Clases de Obligaciones</div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Civiles</div><div class="value">El acreedor posee la facultad de accionar judicialmente ante el incumplimiento del deudor.</div></div>
+    <div class="info-box"><div class="label">Naturales</div><div class="value">El acreedor no posee esa facultad. Ej: Empiezan siendo civiles pero por el paso del tiempo se vuelven naturales. <br>Mala praxis = 10 años. | Accidente de transito = 2 años.</div></div>
+    <div class="info-box"><div class="label">Principales</div><div class="value">Existen por si mismas y es independiente de cualquier otra.</div></div>
+    <div class="info-box"><div class="label">Accesorias</div><div class="value">Su existencia depende de otra principal. Ej: Asume el garante en su contrato, porque garantiza el cumplimiento de lo obligación principal.</div></div>
+    <div class="info-box"><div class="label">Puras y Simples</div><div class="value">No estas sujetas a ninguna modalidad. Ej.: Voy al kiosco y compro.</div></div>
+  </div>
+
+  <h2 class="section-title">Modalidades</h2>
+  <p>Están sujetas a una modalidad: a) Condición, b) Plazo, c) Cargo.</p>
+
+  <ol class="alist">
+    <li>
+      <strong>Condición</strong> — La obligación queda sujeta a que se produzca un hecho. Ej.: Te regalo un auto si te recibes de contador. (hecho futuro e incierto)
+      <ul class="blist" style="margin-top:8px">
+        <li><strong>Suspensivas:</strong> (sujeta a que se produzca un hecho acordado como condición)</li>
+        <li><strong>Resolutorias:</strong> (Se extingue si se produce ese hecho que se acordó como condición) Ej.: Dono un inmueble a una persona por nacer. Si no nace, recupero el inmueble.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Plazo</strong> — Hecho futuro y cierto. Sujeta al transcurso del tiempo. (Hay certeza sobre la producción del evento)
+      <ul class="blist" style="margin-top:8px">
+        <li><strong>Cierto (expreso):</strong> Cuando conozco al asumir la obligación. Ej.: pagar el alquiler del 1 al 10.</li>
+        <li><strong>Incierto (tácito):</strong> Cuando no conozco la fecha al asumir la obligación. Ej.: heredas cuando muera tu padre.</li>
+      </ul>
+    </li>
+    <li>
+      <strong>Cargo</strong> — Obligación accesoria que se le impone al adquirente de un derecho. Dono un inmueble para una biblioteca.
+      <ul class="blist" style="margin-top:8px">
+        <li>El cargo tiene que ser física y jurídicamente posible, licito y conforme a la moral y a las buenas costumbres</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2 class="section-title">Obligaciones de Dar, Hacer y de No Hacer</h2>
+
+  <h3 class="sub-title">De Dar</h3>
+  <p>El deudor debe entregar al acreedor una cosa mueble o inmueble.</p>
+  <ul class="blist">
+    <li>Oblig. de dar con prestación determinada (cosa cierta)</li>
+    <li>Oblig de dar con prestación indeterminada:
+      <ul class="blist">
+        <li>De dar cosas inciertas no fungibles (cosas no determinadas)</li>
+        <li>De dar cantidad de cosas (cosas inciertas fungibles)</li>
+        <li>De dar sumas de dinero.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3 class="sub-title">De Dar Sumas de Dinero</h3>
+  <p>Pueden contraer intereses. (Son frutos que produce un capital)</p>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Compensatorios</strong>Tiempo de uso del capital por parte del deudor (por convención)</div>
+    <div class="char-pill"><strong>Moratorios</strong>Tiempo de mora del deudor (Ejecución legal)</div>
+    <div class="char-pill"><strong>Punitorios</strong>Se pactan con tasas mas elevadas y equivalen a una cláusula penal.</div>
+  </div>
+
+  <h3 class="sub-title">De Hacer</h3>
+  <p>Pueden ser: Personalísimas y no personalísimas.</p>
+  <ul class="blist">
+    <li><strong>Personalísimas:</strong> Depende de las cualidades del deudor. Ej.: pintar un cuadro. Sino se cumple, surge la indemnización.</li>
+    <li><strong>Prestación de un servicio:</strong> Dentro del plazo establecido por las partes o por el juez.</li>
+  </ul>
+
+  <h3 class="sub-title">De No Hacer</h3>
+  <p>(Abstención por parte del deudor) puede ser por ejecución directa y que este vuelva a atrás su accionar; si no se cumple, se indemniza.</p>
+
+  <div class="info-grid">
+    <div class="info-box"><div class="label">De Medios</div><div class="value">Ej.: medico; paciente. En este no se promete un resultado.</div></div>
+    <div class="info-box"><div class="label">De Resultados</div><div class="value">Ej.: Contrato de locacion de obra. Objetivo: una obra o un resultado. A través del arquitecto.</div></div>
+  </div>
+
+  <h2 class="section-title">Obligación con Pluralidad de Objeto</h2>
+  <ol class="alist">
+    <li><strong>Conjuntivas:</strong> En este caso, todas las obligaciones son principales. Pueden ser de igual o de distinta naturaleza. Ej.: (te pago $100 y una TV.)</li>
+    <li><strong>Alternativas:</strong> Pueden ser de distinta naturaleza. Ej.: (te pago una TV o $100)</li>
+    <li><strong>Facultativa:</strong> Hay una obligación principal y otra accesoria a la principal. Ej.: la principal es pagar con una TV; en caso de q sea imposible, se paga con la accesoria que seria los $100)</li>
+  </ol>
+
+  <h2 class="section-title">Obligación con Pluralidad de Sujetos</h2>
+  <p>(1 acreedor y muchos deudores; muchos acreedores y 1 deudor)</p>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Obligación Mancomunada</div>
+      <div class="value">La prestacion se divide entre acreedores y deudores; quien paga su parte queda liberado del resto, y quien recibe la suma queda eliminado de la relación. (No se aplica cuando la obligación es indivisible o de carácter solidario.)</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Obligaciones Divisibles</div>
+      <div class="value">
+        <ul class="blist">
+          <li><strong>De dar:</strong> (suma de dinero o cantidad de cosas)</li>
+          <li><strong>De hacer:</strong> (no siempre son divisibles)</li>
+          <li><strong>De no hacer:</strong> (Serán divisibles o no de acuerdo a la naturaleza de la prestación.)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Obligaciones Indivisibles</div>
+      <div class="value">Activa = varios acreedores; Pasiva = varios deudores. La totalidad de la prestación puede ser reclamada por cualquiera de los acreedores o cumplirla por cualquier deudor.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Obligación Disyuntiva</div>
+      <div class="value">Las partes están vinculadas por la conjunción. Ej.: (Luís o Juan deben $100 a Pedro)</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Solidaria Ambiental</div>
+      <div class="value">Donde hay varias industrias y son todas responsables por contaminar un recurso; si no se puede determinar el grado de contaminación de cada una, la responsabilidad es solidaria y responden todas por el total.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Transmisión de las Obligaciones</h2>
+  <p>(La calidad de acreedor o deudor se traslada a otra persona.)</p>
+  <ol class="alist">
+    <li><strong>Por acto entre vivos:</strong>
+      <ul class="blist">
+        <li>Créditos: (Transferencia del crédito de forma gratuita u onerosa)</li>
+        <li>Deudas: (Debe ser notificado el acreedor y debe aceptarla.)</li>
+      </ul>
+    </li>
+    <li><strong>Por causa de muerte:</strong> (Se transfieren las deudas o créditos por el fallecimiento del acreedor o deudor.)
+      <ul class="blist">
+        <li>Cuando se acepta la herencia, se realiza con beneficio de inventario. (separación de patrimonios)</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2 class="section-title">Obligación derivada de los Hechos Ilícitos</h2>
+  <p>Obligaciones que recaen sobre el autor de un delito o cuasidelito; y consisten en indemnizar a la victima (acreedor) por los daños ocasionados por el deudor.</p>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Responsabilidad por el hecho propio</div><div class="value">Es el caso de un individuo que voluntariamente comete un hecho ilícito. Tiene que pagar por daños materiales y morales. Ej.: cirujano.</div></div>
+    <div class="info-box"><div class="label">Responsabilidad por hecho ajeno</div><div class="value">La empresa responde por daños ocasionados por sus empleados; siempre que hayan sido dentro de la función. El padre responde sobre sus hijos; Los directores responden por los daños de sus alumnos, etc.</div></div>
+    <div class="info-box"><div class="label">Daños por cosas animadas</div><div class="value">El dueño responde los daños que genera el animal.</div></div>
+    <div class="info-box"><div class="label">Daños por cosas inanimadas</div><div class="value">Daños que se ocasionan por cosas que la ley considera riesgosas. Ej.: (Automotores, residuos peligrosos, etc...)</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════ EXTINCIÓN ═══ -->
+  <div class="chapter" id="extincion">
+    <div class="chapter-num">IV</div>
+    <div class="chapter-title">Extinción de las Obligaciones</div>
+  </div>
+
+  <p>La extinción de las obligaciones pueden ser por causas o por disposiciones legales.</p>
+
+  <h2 class="section-title">Las 8 Causas</h2>
+
+  <h3 class="sub-title">1. Pago</h3>
+  <p>Es el cumplimiento de la prestación por parte del deudor. (Es un acto jurídico). Los sucesores estarán obligados al pago siempre que hubieran aceptado la herencia en forma pura y simple; renunciando al beneficio de inventario.</p>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Sujeto</div><div class="value">Acreedor y deudor</div></div>
+    <div class="info-box"><div class="label">Objeto</div><div class="value">Prestación que debe cumplir el deudor: a) identidad (paga lo que se debe), b) Integridad (el pago debe ser total)</div></div>
+    <div class="info-box"><div class="label">Tiempo</div><div class="value">Sin plazo → lo impone el juez.</div></div>
+    <div class="info-box"><div class="label">Lugar</div><div class="value">El lugar pactado o el domicilio del deudor.</div></div>
+    <div class="info-box"><div class="label">Prueba</div><div class="value">Recibo firmado por el acreedor</div></div>
+  </div>
+
+  <h3 class="sub-title">Casos especiales de Pago</h3>
+  <ol class="alist">
+    <li><strong>Consignación</strong></li>
+    <li><strong>Subrogación:</strong> El pago lo realiza un 3ro</li>
+    <li><strong>Imputación de pago:</strong> El deudor le debe al acreedor varias prestaciones de = naturaleza y cumple con alguna de ellas. (tiene q notificar q deuda esta dando de baja)</li>
+    <li><strong>Entrega de bienes</strong></li>
+    <li><strong>Con beneficio de competencia:</strong> (que los deudores paguen lo que pueden)</li>
+    <li><strong>Indebido:</strong> (cuando no se reúnen todos los requisitos.)</li>
+  </ol>
+
+  <h3 class="sub-title">2. Novación</h3>
+  <p>Transformación de una obligación en otra nueva. (La nueva extingue a la original.) Ej.: Leasing con opción de compra.</p>
+  <ul class="blist">
+    <li>La causa debe ser igual a la de la anterior obligación</li>
+  </ul>
+
+  <h3 class="sub-title">3. Compensación</h3>
+  <p>Las partes reúnen recíprocamente la calidad de acreedor y deudor. Ej.: "A" es acreedor de "B" quien, a su vez, es acreedor de "A" en otra obligación. (Opera extinguiendo las deudas automáticamente si son iguales, o hasta el monto de la prestación.)</p>
+  <ul class="blist">
+    <li>Clases: Legal, convencional, facultativa, judicial.</li>
+    <li>Los alimentos de los hijos no pueden ser compensados.</li>
+  </ul>
+
+  <h3 class="sub-title">4. Transacción</h3>
+  <p>Acto jurídico bilateral, por el cual las partes extinguen obligaciones dudosas (no tengo certeza. Faltan elementos de prueba en cuanto a su rigen, monto, etc.) O litigiosas (este en juicio).</p>
+
+  <h3 class="sub-title">5. Confusión</h3>
+  <p>Cuando en una misma persona se reúnen las calidades de deudor y acreedor de una obligación.</p>
+  <ul class="blist">
+    <li><strong>Por causa de muerte:</strong> Ej.: "A" es hijo de "B" y también su deudor; al morir "B"; "A" lo hereda y pasa a ser deudor y acreedor.</li>
+    <li><strong>Por cesión de derechos</strong></li>
+  </ul>
+
+  <h3 class="sub-title">6. Renuncia del acreedor</h3>
+  <p>Cuando una persona, en forma voluntaria, renuncia a derechos patrimoniales (los cuales son los únicos derechos que puedo renunciar).</p>
+  <ul class="blist">
+    <li>Esta prohibido renunciar derechos extramatrimoniales o de familia.</li>
+    <li>No es formal salvo que los casos en que la ley lo prevea.</li>
+    <li>La renuncia tiene que ser aceptada por el deudor.</li>
+  </ul>
+
+  <h3 class="sub-title">7. Remisión de la deuda</h3>
+  <p>Renuncia al cargo de una obligación. (El acreedor le perdona la deuda al deudor y lo libera)</p>
+
+  <h3 class="sub-title">8. Imposibilidad de pago</h3>
+  <p>Es cuando la obligación se torna de cumplimiento imposible sin culpa del deudor. (Se aplica cuando existe caso fortuito o de fuerza mayor)</p>
+
+  <h3 class="sub-title">Prescripción Liberatoria</h3>
+  <p>Es cuando, por el transcurso del tiempo se extingue la acción judicial para exigir que se cumpla un obligación.</p>
+  <ul class="blist">
+    <li>Obligación civil (10 años) → natural</li>
+    <li>Hay plazos previstos por la ley. Ej: 2 años para pagar honorarios.</li>
+  </ul>
+
+  <!-- ═══════════════════════════════════ CONTRATOS ═══ -->
+  <div class="chapter" id="contratos">
+    <div class="chapter-num">V</div>
+    <div class="chapter-title">Contratos</div>
+  </div>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Acuerdo entre 2 o mas personas por el que se obligan mutuamente a ciertas cosas o prestaciones. (Acto jurídico voluntario y lícito. Con contenido económico). El contrato crea, modifica y extingue la obligación.
+  </div>
+
+  <h2 class="section-title">Elementos</h2>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">1. Naturales</div>
+      <div class="value">
+        <ul class="blist">
+          <li>Vicios redhibitorios</li>
+          <li>Garantía de evicción</li>
+        </ul>
+        Funcionan en los contratos bilaterales onerosos. Aunque las partes no lo incluyan expresamente en el contrato funcionan.
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">2. Especiales</div>
+      <div class="value">Son indispensables para cualquier contrato:
+        <ul class="blist" style="margin-top:6px">
+          <li>Capacidad</li>
+          <li>Consentimiento</li>
+          <li>Objeto</li>
+          <li>Forma</li>
+          <li>Causa licita</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">3. Accidentales</div>
+      <div class="value">Existen en determinados contratos y las partes los deben incluir expresamente, sino, no existen los contratos. Ej.: pactos especiales en la compraventa o las modalidades.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Capacidad</h2>
+  <p>Personas mayores de edad, con salud mental que tiene la libre administración y disposición de sus bienes. (pueden contratar)</p>
+
+  <h3 class="sub-title">Incapacidad para contratar</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Incapaces absolutos de hecho</div>
+      <div class="value">Personas por nacer, menores impúberes, dementes declarados en juicio, sordomudos que no se sepan dar a entender por escrito. (No pueden por si mismos; pero si a través de un representante.)</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Incapaces relativos de hecho</div>
+      <div class="value">Adquieren capacidad de administrar y disponer sus bienes. (Para títulos gratuitos solo la administración). Para la disposición, necesitan autorización judicial o acuerdo entre cónyuges.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Condenados a más de 3 años</div>
+      <div class="value">Pueden a través de un curador y autorización judicial.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Religiosos profesos</div>
+      <div class="value">No pueden contratar; salvo que comprasen bienes de contado o contratasen en nombre de sus respectivos conventos.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Comerciantes fallidos</div>
+      <div class="value">No pueden celebrar contratos sobre bienes afectados al concurso de acreedores.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Inhabilitados judicialmente</div>
+      <div class="value">Ebrios, drogadictos, pródigos, etc... Se les nombra un curador o autorización judicial. Pueden tener la administración de sus bienes salvo que el juez se lo prohíba.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Incapaces relativos de derecho</div>
+      <div class="value">Son personas que se les prohíben algunos derechos por cuestiones de moral pública. (Estado civil, parentesco, profesión)</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Personas que no pueden contratar con otras</h3>
+  <ul class="blist">
+    <li>Marido y mujer; aunque estén separados los bienes. (no se pueden realizar actos de compraventa, permuta, donación, etc.…)</li>
+    <li>Padres con sus hijos menores hago su patria potestad. (no puedo realizar actos de compraventa.)</li>
+    <li>Tutores o curadores con sus pupilos o incapaces.</li>
+    <li>Los funcionarios no pueden comprar bienes que es estado les dio para vender y alquilar.</li>
+  </ul>
+
+  <h2 class="section-title">Consentimiento</h2>
+  <p>Manifestar la voluntad de celebrar un contrato, cuando coinciden la oferta y la aceptación.</p>
+  <ul class="blist">
+    <li>Puede retirarse antes de que sea aceptada o bien mantenerse durante cierto tiempo. No se puede retirar antes de que venza el plazo.</li>
+    <li>Si la oferta fue aceptada antes de haberse arrepentido, el aceptante podrá reclamar daños y perjuicios.</li>
+    <li>La oferta caduca cuanto muere el oferente o esta incapacitado.</li>
+  </ul>
+
+  <h2 class="section-title">Objeto del Contrato</h2>
+  <p>Debe ser licito, acorde a la moral, determinado, posible, o puede consistir en una obligación de dar, hacer y no hacer.</p>
+  <ul class="blist">
+    <li>Las cosas litigiosas o dudosas pueden ser objeto de un contrato; siempre que se advierte al otro contratante.</li>
+    <li>Contratos sobre cosas ajenas no son validos; salvo que el dueño certifique el acto.</li>
+    <li>No se pueden celebrar contratos sobre herencias futuras.</li>
+  </ul>
+
+  <h2 class="section-title">Forma del Contrato</h2>
+  <p>Es la manifestación externa de la voluntad de las partes.</p>
+  <ul class="blist">
+    <li><strong>Formal:</strong> Es cuando la ley exige la forma de un contrato
+      <ul class="blist">
+        <li><strong>Solemne:</strong> Si no se cumple la forma del contrato, no es valido.</li>
+        <li><strong>No solemne:</strong> Se requiere escritura pública, pero si no se otorga al comienzo, no hay nulidad.</li>
+      </ul>
+    </li>
+    <li><strong>No formal:</strong> Puede ser por escrito, verbal, por signos, etc.…</li>
+  </ul>
+
+  <h2 class="section-title">Clasificación de Contratos</h2>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Unilateral – gratuito</strong></div>
+    <div class="char-pill"><strong>Oneroso – gratuito</strong></div>
+    <div class="char-pill"><strong>Consensuales – reales</strong></div>
+    <div class="char-pill"><strong>Formales – no formales</strong></div>
+    <div class="char-pill"><strong>Entre vivos – entre ausentes</strong></div>
+  </div>
+
+  <h2 class="section-title">Excepción de Incumplimiento</h2>
+  <p>Surge en los contratos bilaterales. Una de las partes no podrá demandar su cumplimiento sino probase ella haberla cumplido u ofreciese cumplirlo o que su obligación es a plazo. Ej.: Compraventa: El vendedor puede negarse a entregar la cosa vendida, si el comprador no paga el precio.</p>
+
+  <h2 class="section-title">Elementos Accidentales</h2>
+  <p>Son expresamente incluidos por las partes en los contratos. (Funcionan en algunos.)</p>
+
+  <h3 class="sub-title">Cláusula Penal</h3>
+  <p>Cláusula por la cual las partes pactan o acuerdan sanciones a aplicarse si alguna de las partes no cumple o cumple fuera de termino. (Cumple el lugar de la indemnización de daños y perjuicios)</p>
+
+  <h3 class="sub-title">Seña</h3>
+  <p>Para asegurar su cumplimiento o celebración, una de las partes entrega a la otra una suma de dinero.</p>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Penitencial</div>
+      <div class="value">Cualquiera de las 2 partes puede arrepentirse y si esto ocurre, el contrato no se celebra o si se hubiera celebrado queda sin efecto.
+        <ul class="blist" style="margin-top:8px">
+          <li>Si el que dio la seña es el que se arrepiente → pierde la seña.</li>
+          <li>Si el que recibió la seña es el que se arrepiente → deberá restituir el doble de la seña</li>
+          <li>Si ninguno de los 2 se arrepiente, la seña se descontara del resto del precio.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Confirmatoria</div>
+      <div class="value">(casos comerciales). En este caso no hay derecho de arrepentimiento y se lo toma como principio de pago. La parte que dio la seña, deberá completar la prestación y si no lo hace, la otra parte podrá demandarla.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Pacto Comisorio</h3>
+  <p>Las partes pueden establecer en el contrato que si una de ellas no cumple con sus obligaciones, la otra parte podrá dejarlo sin efecto o exigir su cumplimiento, y tal derecho de opción, solo puede ejercerlo la parte que cumplió son sus prestaciones.</p>
+  <ul class="blist">
+    <li><strong>Expreso:</strong> La parte que puede optar, debe reservar tal derecho expresamente en el contrato; en cada contrato, solo podrá demandar el cumplimiento.</li>
+    <li><strong>Tácito:</strong> Este incumplimiento en los contratos bilaterales, aunque no este redactado, puede reclamar el cumplimiento y luego pedir la devolución.</li>
+  </ul>
+
+  <h2 class="section-title">Elementos Naturales: Evicción y Vicios Redhibitorios</h2>
+  <p>Pueden ser efectos de contratos onerosos, y si las partes nada han acordado sobre ellos, se aplican las normas legales.</p>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Evicción</div>
+      <div class="value">Privación que sufre el poseedor de una cosa (comprador) a la amenaza de soportar aquella privación. En predicción de que esto ocurra, el vendedor garantiza el derecho que transmite; y el comprador reclama al enajenante los daños y perjuicios que ha padecido.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Vicios Redhibitorios</div>
+      <div class="value">Defectos graves y ocultos de una cosa objeto de la transmisión o si la venta que hacen que esta cosa resulte no aprovechable para el que la adquiere no tenia conocimiento el comprador.
+        <ul class="blist" style="margin-top:8px">
+          <li>Pedir extinción del contrato.</li>
+          <li>Iniciar acción de reducción del precio o indemnización por daños y perjuicios.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ COMPRAVENTA ═══ -->
+  <div class="chapter" id="compraventa">
+    <div class="chapter-num">VI</div>
+    <div class="chapter-title">Contrato de Compraventa</div>
+  </div>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá compraventa cuando una de las partes se obligue a transferir a la otra la propiedad de una cosa y ésta se obligue a recibirla y a pagar por ella un precio cierto en dinero.
+  </div>
+
+  <h2 class="section-title">Caracteres</h2>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Bilateral</strong>Implica obligaciones para ambas partes</div>
+    <div class="char-pill"><strong>Consensual</strong>Produce todos sus efectos por el solo hecho del consentimiento</div>
+    <div class="char-pill"><strong>No formal</strong>Aun en el caso de que tenga por objeto la transmisión de inmuebles</div>
+    <div class="char-pill"><strong>Oneroso</strong></div>
+    <div class="char-pill"><strong>Conmutativo</strong>Los valores intercambiados son aproximadamente equivalentes</div>
+  </div>
+
+  <h2 class="section-title">Elementos Peculiares</h2>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">La cosa</div></div>
+    <div class="info-box"><div class="label">El precio</div></div>
+  </div>
+
+  <h2 class="section-title">Obligaciones del Vendedor</h2>
+  <ul class="blist">
+    <li><strong>Entregar la cosa vendida:</strong> conservar la cosa hasta el momento de la entrega y la de correr con los gastos de entrega. También genera la obligación de recibir el precio.</li>
+    <li><strong>Garantizarla</strong> para el caso de evicción y de vicios ocultos.</li>
+    <li><strong>Recibir el precio</strong> en el lugar convenido.</li>
+    <li><strong>Garantía:</strong> Las obligaciones del vendedor no terminan con la entrega de la cosa. Debe, además, garantizar al comprador que podrá gozar de ella conforme a su destino y a la naturaleza del derecho de propiedad que le ha transmitido.
+      <ul class="blist">
+        <li>A.- Garantía contra los hechos propios del vendedor</li>
+        <li>B.- Evicción</li>
+        <li>C.- Vicios Redhibitorios: Se llaman vicios redhibitorios los defectos ocultos de la cosa que existen al tiempo de la adquisición y cuya importancia es tal que de haberlos conocido el comprador no lo habría adquirido o habría dado menos por ella.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2 class="section-title">Obligaciones del Comprador</h2>
+  <ol class="alist">
+    <li>Pagar el precio.</li>
+    <li>Recibir la cosa.</li>
+    <li>Pagar el instrumento del contrato y los gastos de recepción de la cosa.</li>
+  </ol>
+
+  <!-- ═══════════════════════════════════ PERMUTA ═══ -->
+  <h2 class="section-title" id="permuta">Contrato de Permuta</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> La permuta es el trueque de una cosa por otra. El contrato de truque o permutación tendrá lugar cuando uno de los contratantes se obligue a transferir a otro la propiedad de una cosa, con tal que éste le dé la propiedad de otra cosa.
+  </div>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Consensual</strong>Solo se produce por el acuerdo entre las voluntades.</div>
+    <div class="char-pill"><strong>No formal</strong>Puede ser validamente celebrado en instrumento privado. En el caso de inmuebles la formalidad exigida es la escrituración pública.</div>
+    <div class="char-pill"><strong>Bilateral</strong>Engendra obligaciones para ambas partes.</div>
+    <div class="char-pill"><strong>Oneroso</strong>Las contraprestaciones son recíprocas.</div>
+    <div class="char-pill"><strong>Conmutativo</strong>Las contraprestaciones recíprocas son por naturaleza equivalentes.</div>
+  </div>
+
+  <h3 class="sub-title">Obligación de las partes</h3>
+  <p>Ambos tienen el derecho de recibir una cosa a cambio de la que están entregando, al mismo tiempo que tienen la obligación de entregar una cosa por la cual recibirán otra a cambio. Esto se da así siempre salvo contadas ocasiones. Pe: si el copermutante tiene justos motivos para creer que la cosa recibida no es propiedad del que la dio, no tiene la obligación de entregar su cosa a cambio.</p>
+
+  <!-- ═══════════════════════════════════ CESIÓN ═══ -->
+  <h2 class="section-title">Contrato de Cesión de Derechos</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá cesión de créditos cuando una de las partes se obligue a transferir a la otra el derecho que le compete contra su deudor, entregándole el título de crédito, si existiese.
+  </div>
+
+  <p>A este contrato se aplican las disposiciones del contrato de compraventa si el derecho creditorio fuese cedido por un precio en dinero, rematado o dado en pago, o adjudicado en virtud de ejecución de una sentencia.</p>
+  <p>En cambio, si el contrato fuese cedido por otra cosa con valor en sí, o por otro derecho creditorio, se aplicarán las normas del contrato de permuta. Si el contrato fuera cedido en forma gratuita, se le aplicarán las normas del contrato de donación.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ul class="blist">
+    <li>Es un contrato consensual; se perfecciona con el simple acuerdo de las partes.</li>
+    <li>Es formal, ya que requiere la forma escrita bajo pena de nulidad.</li>
+    <li>Puede ser onerosa o gratuita. En el caso que sea onerosa será bilateral y conmutativa ya que las prestaciones son recíprocas y se presumen equivalentes. En el caso que sea gratuita será unilateral, como si se tratara de una donación.</li>
+  </ul>
+
+  <h3 class="sub-title">Partes</h3>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Cedente</div><div class="value">Titular del derecho que realiza la cesión a favor de otro</div></div>
+    <div class="info-box"><div class="label">Cesionario</div><div class="value">Persona a cuyo favor se realiza la cesión</div></div>
+  </div>
+
+  <h3 class="sub-title">Obligación de las partes</h3>
+  <p>La cesión se formaliza por el mero acuerdo entre el cedente y cesionario, el deudor cedido no es parte en el contrato ni se requiere su consentimiento pero sí su notificación.</p>
+  <p>El cedente tiene la obligación de dar la titularidad de los derechos, aunque no necesariamente tiene el derecho de recibir una contraprestación. Por su parte, el cesionario tiene el derecho de recibir el derecho que se ha acordado, aunque puede o no tener la obligación de efectuar una contraprestación.</p>
+
+  <!-- ═══════════════════════════════════ DONACIÓN ═══ -->
+  <div class="chapter" id="donacion">
+    <div class="chapter-num">VII</div>
+    <div class="chapter-title">Contrato de Donación</div>
+  </div>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Una persona transfiere libre y gratuitamente a otra persona la propiedad de una cosa. (Donante y Donatario)
+  </div>
+
+  <h3 class="sub-title">Características</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Gratuito</strong></div>
+    <div class="char-pill"><strong>Unilateral</strong></div>
+    <div class="char-pill"><strong>Consensual</strong></div>
+  </div>
+  <ul class="blist">
+    <li>Como regla general es no formal.</li>
+    <li>La donación de inmuebles, es a través de escritura publica (formal)</li>
+  </ul>
+
+  <h2 class="section-title">Distintas Clases de Donación</h2>
+  <ol class="alist">
+    <li><strong>Mutuas:</strong> En un mismo acto, las partes se hacen donación; las cosas no son del mismo valor. Ej.: regalo.</li>
+    <li><strong>Con cargo:</strong> El donante le impone al donatario cumplir con una prestación; ya sea a favor del donante o de un 3ro. Ej.: Parcialmente oneroso → dono plata a la ciudad xx para cierta cosa.</li>
+    <li><strong>Remuneratoria:</strong> Se le hace a una persona que le presto un buen servicio al donante, por el cual podría reclamar honorarios. Ej.: Paciente le reclama algo a un medico.</li>
+    <li><strong>Inoficiosa:</strong> Supera el porcentual del que una persona puede disponer libremente cuando tiene herederos forzosos. Ej.: Una persona tiene descendientes; estos heredan el 30% por ley.</li>
+  </ol>
+
+  <h2 class="section-title">Revocación y Reversión</h2>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Revocación</div>
+      <div class="value">Dejan sin efecto por:
+        <ul class="blist" style="margin-top:6px">
+          <li>No cumplir cargos</li>
+          <li>Ingratitud del donatario</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">Reversión</div>
+      <div class="value">Tengo que dejar planteada expresamente al realizar la donación. Plantear que si el donatario o sus herederos mueren antes que el donante, lo donado vuelve al donante.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ LOCACIÓN ═══ -->
+  <div class="chapter" id="locacion">
+    <div class="chapter-num">VIII</div>
+    <div class="chapter-title">Contratos de Locación</div>
+  </div>
+
+  <h2 class="section-title">Locación de Cosas</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Hay locación de cosas cuando una persona (locador) se obliga a entregar el uso y goce de una cosa durante un cierto tiempo a otra (locatario) que a su vez se obliga a pagar un precio en dinero.
+  </div>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Bilateral</strong></div>
+    <div class="char-pill"><strong>Oneroso</strong></div>
+    <div class="char-pill"><strong>Conmutativo</strong>Se supone el alquiler pactado es el justo precio del uso y goce</div>
+    <div class="char-pill"><strong>Consensual</strong>Se concluye por el mero consentimiento.</div>
+    <div class="char-pill"><strong>No formal</strong>Pero los contratos de alquiler de inmuebles urbanos y rurales son formales, deben ser hechos por escrito.</div>
+    <div class="char-pill"><strong>Tracto sucesivo</strong>Su cumplimiento se prolonga a través del tiempo.</div>
+  </div>
+
+  <h3 class="sub-title">Elementos del contrato</h3>
+  <p>Un contrato de locación regularmente concluido supone el consentimiento de las partes sobre: la naturaleza del contrato; la cosa que se alquila; el precio; el tiempo de duración del contrato y; el uso para el cual se destina la cosa.</p>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Locador</h4>
+      <ul class="blist">
+        <li>Entregar la cosa.</li>
+        <li>Conservarla en buen estado mientras dure la locación.</li>
+        <li>Mantener al locatario en el uso y goce pacifico de la cosa.</li>
+        <li>Pagar al locatario las mejoras que éste hubiese introducido para hacer posible el uso normal de la cosa.</li>
+        <li>Pagar las contribuciones y cargas que gravan la cosa.</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Locatario</h4>
+      <ul class="blist">
+        <li>Usar y gozar de la cosa conforme a lo pactado, o, en defecto de pacto, de acuerdo con la naturaleza y destino de la cosa.</li>
+        <li>Conservarla en buen estado.</li>
+        <li>Pagar el alquiler.</li>
+        <li>Restituir la cosa al término de la locación.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title">Locación de Obra</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Se llama locación de obra al contrato en virtud del cual una de las partes se compromete a realizar una obra y la otra a pagar por esa obra un precio en dinero.
+  </div>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Empresario (quien ejecuta la obra)</h4>
+      <ul class="blist">
+        <li>Ejecutar la obra en forma debida</li>
+        <li>Entregarla en el tiempo pactado</li>
+        <li>Permitir el controlador de la marcha de los trabajos por el dueño</li>
+        <li>Responder ante el dueño por la solidez de la obra.</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Dueño de la Obra</h4>
+      <ul class="blist">
+        <li>Cooperar lealmente con el empresario para facilitarle la realización de la obra</li>
+        <li>Pagar el precio</li>
+        <li>Recibir la cosa</li>
+        <li>Pagar a las personas que han trabajado en la obra o suministrado los materiales hasta la suma que adeude el empresario.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-box"><strong>Derecho de Retención del Locador —</strong> El empresario no pagado tiene derecho a retener la cosa sobre la cual ha realizado su obra.</div>
+
+  <!-- ═══════════════════════════════════ OTROS CONTRATOS ═══ -->
+  <div class="chapter" id="otros">
+    <div class="chapter-num">IX</div>
+    <div class="chapter-title">Otros Contratos</div>
+  </div>
+
+  <h2 class="section-title">Contrato de Leasing</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> El leasing es un contrato concebido originalmente para facilitar la adquisición de bienes muebles de larga duración y alto precio. Combina la locación con la compraventa.
+  </div>
+  <p>El dador de la cosa la entrega al tomador, quien paga un alquiler o canon calculado de modo tal que final del periodo estipulado en el contrato, se haya cubierto la totalidad del precio de la cosa con sus intereses; o bien se haya cubierto una parte sustancial del precio, quedando un saldo. La decisión de adquirirlo esta en el comprador, quien puede no pagar el saldo y devolver la cosa.</p>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Representación</h2>
+
+  <p>No siempre los actos jurídicos son llevados a cabo personalmente por el propio interesado; por el contrario, es frecuente que un tercero actúe en su nombre y representación. El representado adquiere los derechos y contrae las obligaciones emergentes del acto exactamente como si él mismo lo hubiera suscripto; en cambio, el representante permanece intocado por los efectos del acto jurídico que ha celebrado.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ul class="blist">
+    <li>Es un contrato que no lleva su fin en sí mismo, sino que se celebra como medio para la realización de otro acto o contrato.</li>
+    <li>Puede ser oneroso o gratuito, dependiendo de la situación. En el caso que sea gratuito, será unilateral.</li>
+    <li>Normalmente es un contrato consensual.</li>
+  </ul>
+
+  <h3 class="sub-title">Clases de Representación</h3>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Legal</div><div class="value">Tiene su origen en la ley, como ocurre con los incapaces de obrar.</div></div>
+    <div class="info-box"><div class="label">Voluntaria</div><div class="value">Nace de la voluntad de las partes, como en el mandato y la gestión de negocios.</div></div>
+  </div>
+
+  <h3 class="sub-title">Obligaciones del Mandante</h3>
+  <ol class="alist">
+    <li>De proporcionar los medios para la ejecución del mandato</li>
+    <li>De indemnizar las perdidas ocasionadas.</li>
+    <li>De liberar al mandatario</li>
+    <li>Obligación de retribuir el servicio.</li>
+    <li>Derecho de retención del mandatario (el mandatario puede retener las cosas del mandante hasta que este le pague lo convenido.)</li>
+  </ol>
+
+  <h3 class="sub-title">Actos que pueden ser objeto de Representación</h3>
+  <p>El principio general es que todos los actos se pueden celebrar por representación.</p>
+  <p>En el dominio patrimonial, la única excepción es el testamento, acto personalísimo típico, que no puede ser hecho por representante, sea legal o voluntario. En el derecho de familia, en cambio, las excepciones son más numerosas, puesto que ciertos actos inherentes a él se avienen mal con otra forma de otorgamiento que no sea la personal. Es así que el representante legal no puede contraer matrimonio, ni reconocer hijos extramatrimoniales, ni iniciar, salvo hipótesis de excepción, juicio de divorcio en nombre de su representado; pero, en cambio, estos actos, salvo el matrimonio, pueden ser celebrados por mandatarios.</p>
+  <p>Tampoco podría concebirse que se otorgara poder para ejercer la patria potestad, la tutela o la curatela en representación del padre, tutor o curador.</p>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Fianza</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá contrato de fianza cuando una de las partes se hubiere obligado accesoriamente por un tercero, y el acreedor de ese tercero aceptase. Es un convenio celebrado entre quien es acreedor de un tercero; y quien por razones especiales, generalmente amistad, viene a asegurar a ese acreedor el cumplimiento de la obligación del verdadero autor (deudor).
+  </div>
+
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Fiador</div><div class="value">Es quien garantiza el pago de la deuda contraída por un tercero.</div></div>
+    <div class="info-box"><div class="label">Acreedor</div><div class="value">Es quien acepta el ofrecimiento o el compromiso que contrae el fiador.</div></div>
+    <div class="info-box"><div class="label">Deudor</div><div class="value">Es ajeno al contrato de fianza.</div></div>
+  </div>
+
+  <h3 class="sub-title">Clases de Fianza</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Convencional simple</div>
+      <div class="value">Cuando se confiere al fiador el beneficio de excusión (ejecución previa de los bienes del deudor principal), y en caso de existir varios fiadores la división de la deuda entre ellos por partes iguales.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Convencional solidaria</div>
+      <div class="value">Que faculta al acreedor a dirigirse contra cualquiera de los fiadores por el total de la deuda, aún sin antes ejecutar los bienes del deudor principal.</div>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Obligaciones de las Partes</h3>
+  <p><strong>Entre fiador y acreedor:</strong> la obligación del fiador es accesoria y subsidiaria: sólo si no cumple el deudor principal deberá hacerlo el fiador. El fiador no puede ser compelido a pagar al acreedor sin previa ejecución de todos los bienes del deudor (beneficiario de excusión). Si de la ejecución y venta de los bienes del deudor principal no se hubiere obtenido sino un pago parcial, el acreedor estará obligado a aceptarlo, no pudiendo reclamar al fiador más que el saldo impago.</p>
+  <p><strong>Entre fiador y deudor:</strong> antes del pago, el fiador podrá solicitar la exoneración de la fianza en los casos:</p>
+  <ul class="blist">
+    <li>Cuando hayan pasado cinco años desde que la dio</li>
+    <li>Si le demandasen judicialmente el pago de la deuda</li>
+    <li>Si al vencimiento de la deuda el deudor no la pagase</li>
+    <li>Si el deudor dilapidase sus bienes, hiciere negocios riesgosos o garantizase con sus bienes obligaciones de terceros</li>
+    <li>Si el deudor quisiere ausentarse del país sin dejar bienes inmuebles suficientes para afrontar el pago de la deuda afianzada</li>
+    <li>Quiebra del deudor</li>
+  </ul>
+  <p><strong>Entre los cofiadores:</strong> el cofiador que paga la deuda afinazada queda subrogado en los derechos del acreedor contra los otros cofiadores, para cobrar a cada uno de éstos la parte que le correspondiese.</p>
+
+  <h3 class="sub-title">Caracteres del Contrato de Fianza</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Unilateral y gratuito</strong>Solo crea obligaciones para el fiador.</div>
+    <div class="char-pill"><strong>Accesorio</strong>Supone la existencia de una obligación principal a la cual está subordinado el fiador.</div>
+    <div class="char-pill"><strong>Subsidiario</strong>Genera una obligación subsidiaria.</div>
+    <div class="char-pill"><strong>Consensual y no formal</strong>Aunque si es negada solo puede ser probada en juicio de forma escrita.</div>
+  </div>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Prenda</h2>
+
+  <h3 class="sub-title">a) Contrato de Prenda con Desplazamiento</h3>
+  <div class="def-card">
+    <strong>Definición —</strong> La prenda es un derecho real de garantía que recae sobre bienes muebles. Habrá constitución de prenda cuando el deudor, por una obligación cierta o condicional, presente o futura, entregue al acreedor una cosa mueble o un crédito en seguridad de la deuda.
+  </div>
+  <p>Se le denomina así porque el bien dado en garantía del cumplimiento de la obligación pasa a poder del acreedor hasta el efectivo pago de la misma.</p>
+
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Unilateral</strong></div>
+    <div class="char-pill"><strong>Accesorio</strong></div>
+    <div class="char-pill"><strong>Gratuito u Oneroso</strong></div>
+    <div class="char-pill"><strong>Típico</strong></div>
+    <div class="char-pill"><strong>De duración</strong></div>
+    <div class="char-pill"><strong>Comercial</strong></div>
+  </div>
+
+  <p>Las obligaciones nacen para el acreedor prendario que debe proceder a la devolución de la cosa cuando el deudor cumpla con la obligación a su cargo; debiendo proveer a la conservación de la cosa mientras ésta se halla en su poder, siendo responsable por su pérdida o deterioro culpable. El acreedor tiene derecho de retención sobre la cosa dada en prenda hasta que le sea pagada la deuda. El deudor por su parte tiene la obligación de pagar su deuda en tiempo y forma y tiene el derecho a que se le restituya su cosa luego del pago.</p>
+  <p>Pueden ser objeto de este contrato de prenda todas las cosas muebles que están en el comercio.</p>
+
+  <h3 class="sub-title">b) Prenda sin Desplazamiento</h3>
+  <p>A diferencia de la prenda con desplazamiento, en este contrato, la cosa no se desplaza, no sale de manos del deudor, quien continúa en el uso del mismo. A este contrato se le denomina también contrato de prenda con registro. Es aquel por el cual, para garantizar la devolución de un crédito por parte del deudor, se afectan uno o varios bienes muebles determinados, a través de la inscripción del contrato en un registro especial, denominado "Registro de Créditos Prendarios".</p>
+
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Consensual</strong></div>
+    <div class="char-pill"><strong>Accesorio</strong></div>
+    <div class="char-pill"><strong>Comercial</strong></div>
+    <div class="char-pill"><strong>Típico</strong></div>
+    <div class="char-pill"><strong>De Duración</strong></div>
+    <div class="char-pill"><strong>Oneroso</strong></div>
+    <div class="char-pill"><strong>Conmutativo</strong></div>
+  </div>
+
+  <p>Los bienes afectados quedan en poder del deudor o del tercero que los haya prendado para garantizar deuda ajena. Podrán usarlos libremente, aunque están imposibilitados de disponer de ellos y de volver a prendarlos en garantía de otra deuda, salvo autorización escrita del acreedor.</p>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Depósito</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá depósito cuando una de las partes entrega a la otra una cosa, con la sola finalidad de custodiarla hasta que aquella la reclame.
+  </div>
+  <p>Esta cosa a guardar puede ser mueble o inmueble, según el código civil, ahora cuando nos referimos a un contrato de depósito comercial, según el código de comercio, la cosa solo puede ser mueble.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ul class="blist">
+    <li>En el caso de ser un contrato no comercial, basado en el código civil, es gratuito, pero puede ser oneroso si las partes así lo quieren. El depósito comercial si es oneroso, el precio se denomina comisión. El precio de esta comisión se estipula en el contrato o esta determinado por el uso de la plaza. En caso contrario será fijado por árbitros.</li>
+    <li>En el caso de ser gratuito nos encontramos con que también es unilateral (porque la obligación recae solo en el depositario, que cuida la cosa y luego la retribuye). De ser oneroso es bilateral, porque el depositante tiene la obligación de pagar una comisión.</li>
+    <li>En ambos casos es un contrato real, con esto nos referimos a que queda concluido con la entrega de la cosa, real o fictia, como puede ser un titulo.</li>
+    <li>Es un acto de confianza del depositante al depositario.</li>
+  </ul>
+
+  <h3 class="sub-title">Distintas Categorías del Depósito</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">Voluntario Regular</div>
+      <div class="value">Hace que las cosas puedan individualizarse, las cosas (muebles o inmuebles) son no consumibles.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Voluntario Irregular</div>
+      <div class="value">Cuando la cosa depositada fuese dinero, o una cantidad de cosas consumible, si el depositante autoriza al depositario el uso de estas.</div>
+    </div>
+    <div class="info-box">
+      <div class="label">Forzoso</div>
+      <div class="value">Es el que se hace en ocasión de algún desastre, por ejemplo un incendio, naufragio, etc.</div>
+    </div>
+  </div>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Depositario (depósito regular)</h4>
+      <ul class="blist">
+        <li>Guardar y conservar la cosa que se le entrega.</li>
+        <li>Respetar y guardar secreto respecto de la cosa depositada en cajas o en bultos cerrados.</li>
+        <li>Abstenerse de usar la cosa depositada.</li>
+        <li>Restituirla al término del contrato o cuando el depositante lo exija.</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Depositante</h4>
+      <ul class="blist">
+        <li>Reembolso al depositario de todos los gastos que hubiera hecho para la conservación de la cosa depositada.</li>
+        <li>Indemnizar al depositario de los perjuicios que le ha ocasionado el deposito.</li>
+        <li>Pagarle la remuneración pactada, pero en defecto de convenio o promesa sobre el punto debe repuntarse que el deposito es gratuito.</li>
+        <li>Recibir la cosa que le restituye el depositario en tiempo oportuno. Si constituido en mora no la recibiere, debe los daños y perjuicios consiguientes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note-box"><strong>Derecho de retención del Depositario —</strong> El depositario tiene derecho a retener la cosa depositada hasta el entero pago de lo que se le debe en razón del depósito.</div>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Comodato o Préstamo de Uso</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá comodato cuando una persona entregara gratuitamente a otra una cosa mueble o inmueble no fungible ni consumible, para que esta la use devolviéndole luego la misma cosa. Aquí no hay transferencia de propiedad.
+  </div>
+
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Real</strong></div>
+    <div class="char-pill"><strong>Gratuito</strong></div>
+    <div class="char-pill"><strong>Bilateral</strong>(según Borda)</div>
+  </div>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Comodante</h4>
+      <ul class="blist">
+        <li>Permitir el uso de la cosa durante el tiempo convenido</li>
+        <li>Responsabilidad por los vicios de la cosa</li>
+        <li>Pagar los gastos extraordinarios</li>
+        <li>No hay derecho de retención</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Comodatario</h4>
+      <ul class="blist">
+        <li>Conservar y cuidar la cosa prestada</li>
+        <li>Restituir la cosa</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Mutuo o Préstamo de Consumo</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Habrá mutuo o empréstito de consumo cuando una parte entregue a la otra una cantidad de cosas que esta última está autorizada a consumir, devolviendo en el tiempo convenido igual cantidad de cosas de la misma especie y calidad.
+  </div>
+
+  <p>La esencia del mutuo es un préstamo que, como tal, se entiende de uso; sólo que el uso de las cosas consumibles produce su perecimiento, por lo que el prestatario no puede cumplir con su obligación de restitución, sino devolviendo otra cosa de la misma especie y calidad. Por lo tanto lo que tipifica jurídicamente al mutuo es que la cosa sea consumible o fungible y basta que la cosa tenga alguna de éstas dos características para que el contrato deba considerarse de consumo.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ul class="blist">
+    <li>Bilateral, porque supone para el prestamista la obligación de entregar la cosa y para el mutuario la de restituirla en su momento y, eventualmente la de pagar intereses.</li>
+    <li>Puede ser gratuito u oneroso, en defecto de convenio sobre el punto se lo presume gratuito.</li>
+    <li>Real, que sólo se perfecciona con la entrega de la cosa.</li>
+  </ul>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Mutuante o Prestamista</h4>
+      <p>Debe entregar la cosa prometida. También cae sobre él la responsabilidad por mala calidad o defectos ocultos de la cosa.</p>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Mutuario</h4>
+      <p>Debe devolver al prestamista en el término convenido una cantidad igual de cosas de la misma especie y calidad que la prestada. De no ser posible restituir otro tanto de la misma especie y calidad, el mutuario deberá pagar el precio de la cosa o cantidad recibida.</p>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Préstamo de Dinero</h3>
+  <p>La forma típica y más frecuente del mutuo es el préstamo de dinero. Pueden pactarse o no intereses, pero si el contrato permanece en silencio entonces se presume gratuito.</p>
+  <div class="info-grid">
+    <div class="info-box"><div class="label">Tasa de interés</div><div class="value">Todos los intereses en su conjunto no podrán sumar más del 20% de lo prestado.</div></div>
+    <div class="info-box"><div class="label">Falta de pago de los intereses</div><div class="value">El atraso en el pago de los intereses da derecho al prestamista a reclamar la devolución del capital antes del término fijado y pedir la resolución.</div></div>
+  </div>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Distribución</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> El contrato de distribución es un contrato consensual que otorga al distribuidor el derecho de vender en un sector determinado, cuya ganancia consiste en la diferencia entre el precio de compra y el de venta, denominada comisión y más acertadamente de reventa.
+  </div>
+
+  <p>En caso de no pago por parte del cliente esto afecta solo al distribuidor, quien debe soportar todos los riesgos una vez que la mercadería queda a su disposición; estos pueden ser el deterioro, pérdida o falta de pago de los clientes. En la mayoría de los casos el distribuidor es un mayorista, cuyos clientes son comerciantes que venden directamente al público, al por menor.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <ul class="blist">
+    <li>No formal.</li>
+    <li>Consensual. En la mayoría de los casos, la utilización de la forma verbal, sin instrumentación por escrito, genera dificultades para interpretar las obligaciones de la partes.</li>
+  </ul>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones del Concedente</h4>
+      <ul class="blist">
+        <li>Entregar los bienes que el distribuidor habrá de revender en la cantidad, tiempo y forma previstos, o la solicitada por el distribuidor si le es factible.</li>
+        <li>No realizar por sí o por terceros operaciones en la "zona de distribución".</li>
+        <li>Entregar un producto idóneo, apto para la finalidad pactada, con su marca publicitada.</li>
+        <li>Informar al distribuidor el valor de venta del producto o servicio, y con antelación suficiente, sus variaciones.</li>
+        <li>Cumplir con las prestaciones de publicidad estipuladas a su cargo.</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Distribuidor</h4>
+      <ul class="blist">
+        <li>Crear una organización empresaria apta para establecer un sistema de distribución acorde con lo convenido.</li>
+        <li>Distribuir el producto o servicio con exclusividad a favor del concedente, no comercializar con otro de la competencia, salvo pacto contrario.</li>
+        <li>Cumplir con el mínimo de compras convenidas en la forma y tiempo establecido.</li>
+        <li>No exceder la zona de distribución delimitada.</li>
+        <li>Permitir una fiscalización razonable del distribuido.</li>
+        <li>Pagar al concedente las facturas de los productores adquiridos.</li>
+        <li>Mantener el acondicionamiento de la mercadería.</li>
+        <li>Cumplir con las obligaciones a su cargo relativas a la publicidad.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Derechos del Concedente</h3>
+  <p>Se resumen en fijar el precio de venta del producto o servicio, y percibir el precio de la mercadería remitida al distribuidor.</p>
+
+  <h3 class="sub-title">Derechos del Distribuidor</h3>
+  <ul class="blist">
+    <li>Percibir par sí el margen de reventas correspondiente a los productos distribuidos.</li>
+    <li>Exigir el envío de la mercadería en las cantidades necesarias para abastecer a los consumidores y las cantidades adecuadas a la finalidad económica tenida en mira al contratar.</li>
+  </ul>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Agencia Comercial</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> El agente de comercio se obliga a desplegar una actividad adecuada para lograr clientes para su comitente, y remitir a éste los pedidos de mercaderías, servicios u otros bienes cuya comercialización le ha sido encomendada. El comitente, al aceptar el pedido, concierta el contrato que lo liga de modo directo con el cliente; el agente de comercio no es parte de dicho contrato, sino un intermediario. Su retribución consiste en un porcentaje sobre el precio de la operación.
+  </div>
+
+  <p>Este intermediario desenvuelve su actividad con plena autonomía, pues no está ligado al comitente, ni en relación de subordinación, ni de dependencia.</p>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Obligaciones y deberes del Agente</h4>
+      <ul class="blist">
+        <li><strong>Actuación en interés del comitente.</strong></li>
+        <li><strong>Colaboración:</strong> Consiste especialmente en la obligación que tiene el agente de comercio de actuar conforme a las instrucciones dadas por el comitente; suministrar a éste todas las informaciones sobre el mercado que puedan interesar para la marcha de los negocios encomendados, y advertirle inmediatamente en el caso de que no pudiese ocuparse de los negocios.</li>
+        <li><strong>Fidelidad</strong></li>
+        <li><strong>"Star del credere":</strong> Puede convenirse que el agente tome sobre sí los riesgos de la cobranza, quedando en la obligación directa de satisfacer al comitente el saldo que resulte a su favor, como si el propio agente hubiera sido el comprador. En este caso el agente, además de la comisión ordinaria, tiene derecho a percibir otra, llamada de "garantía".</li>
+      </ul>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Preponente (o comitente)</h4>
+      <ul class="blist">
+        <li>Enviar en tiempo oportuno las instrucciones</li>
+        <li><strong>Perfeccionar el contrato gestionado por el agente:</strong> Si el comitente no concluye el contrato u ordena suspender las tratativas sin causa justificada, deberá pagar al agente la mitad de la comisión, aunque no sea lo que exactamente corresponde a los trabajos practicados.</li>
+        <li>Pago de comisiones</li>
+        <li><strong>Indemnización:</strong> Procede en caso de revocación anticipada del contrato celebrado por tiempo determinado, o de revocación intempestiva del contrato de agencia celebrado por tiempo indeterminado.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sub-title">Clasificación de los Agentes</h3>
+  <div class="chars-grid">
+    <div class="char-pill">Agentes exclusivos y agentes no exclusivos</div>
+    <div class="char-pill">Agente regional y agente general</div>
+    <div class="char-pill">Agente para comercio interno y agente para comercio externo</div>
+  </div>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato de Franchising</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Es un contrato de empresa por el cual se transfiere un método para administrar y manejar un negocio, al que se le concede un monopolio territorial de distribución de un producto o un servicio identificado con una marca comercial del otorgante y sujeto a su estricto control y asistencia técnica en forma continua.
+  </div>
+
+  <p>Una parte, que es conocida como franquiciante, otorga licencia a un comerciante independiente, llamado el franquisiado, para que venda productos o servicios de su titularidad. El franquiciado generalmente paga un canon por este privilegio, más una regalía sobre grandes ventas. Es ventajoso para ambas partes tener un negocio de éxito.</p>
+  <p>Muchos franquiciantes preparan a los franquiciados mediante personal que los entrenan y aconsejan. Un buen franquiciante continúa prestando esta asistencia después del entrenamiento del período inicial.</p>
+  <p>Aunque el franquiciado es un comerciante autónomo, se integra a la red organizada por el franquiciante como si fuera una sucursal de éste.</p>
+
+  <h3 class="sub-title">Rasgos Característicos</h3>
+  <ul class="blist">
+    <li>Inversión mínima para el franquiciante (fanquiciador)</li>
+    <li>Imagen de la marca</li>
+    <li>Asistencia permanente del franquiciante al franquiciado</li>
+    <li>Poder de negociador a favor de los franquiciados frente a proveedores y entidades financieras</li>
+    <li>Negocios estables</li>
+    <li>Negocio transmisible</li>
+  </ul>
+
+  <h3 class="sub-title">Partes y Obligaciones</h3>
+  <p>La obligación del franquiciado generalmente es pagar un canon por este privilegio, más una regalía sobre grandes ventas. Pero además de pagar esta tasa inicial por el derecho a utilizar la franquicia y de pagar una regalía (royalty) periódica, corre a su exclusivo costo y riesgo la instalación o construcción del establecimiento (unidad de franquicia), a veces con financiación suministrada por el franchisor o por alguna institución que éste designe.</p>
+  <ul class="blist">
+    <li>El franquiciado debe aceptar el sistema contable impuesto por el franquiciante y cumplimentar los informes periódicos en materia económica y financiera que éste le exige.</li>
+    <li>Tiene la obligación de cumplir con las leyes y reglamentaciones nacionales, provinciales y municipales que reglamenten la actividad y, naturalmente, asume total y exclusiva responsabilidad por el personal a su cargo.</li>
+    <li>También se obliga a respetar horarios mínimos de atención del negocio.</li>
+    <li>Compras de elementos necesarios para el franquiciado en lugares determinados</li>
+    <li>Disciplina de grupo</li>
+    <li>Información al franquiciante</li>
+  </ul>
+
+  <hr class="thin">
+
+  <h2 class="section-title">Contrato Financiero: Underwriting</h2>
+
+  <div class="def-card">
+    <strong>Definición —</strong> Es una convención escrita celebrada entre una entidad emisora y un banco de inversión o una compañía financiera o un banco comercial, con un contenido obligacional variable respecto de una masa de valores mobiliarios y a los fines de asegurar su cobertura.
+  </div>
+
+  <p>Este tipo de operación permite el acceso de empresas al mercado de capitales, para obtener recursos que precise. Así la sociedad que ha decidido la emisión de una nueva serie de acciones, puede acudir a una entidad financiera a la que ofrece la adquisición de la totalidad o parte de dicha emisión, con el fin de que esta la enajene (venda) a medida que la captación del mercado lo permita.</p>
+
+  <h3 class="sub-title">Caracteres</h3>
+  <div class="chars-grid">
+    <div class="char-pill"><strong>Bilateral</strong>La entidad financiera y la empresa comercial se obligan recíprocamente.</div>
+    <div class="char-pill"><strong>Consensual</strong></div>
+    <div class="char-pill"><strong>Oneroso</strong></div>
+    <div class="char-pill"><strong>Conmutativo</strong></div>
+    <div class="char-pill"><strong>Innominado y atípico</strong>No tiene una denominación ni registra una regulación expresa, completa y unitaria en nuestro ordenamiento legal.</div>
+    <div class="char-pill"><strong>No formal</strong>No existe ninguna norma que le imponga una forma determinada.</div>
+  </div>
+
+  <h3 class="sub-title">Clases de Underwriting</h3>
+  <div class="info-grid">
+    <div class="info-box">
+      <div class="label">En Firme</div>
+      <div class="value">El underwriter que suministra los fondos se convierte desde el principio y por la totalidad o parte de las acciones prefinanciadas, en accionista de la sociedad cliente (emisora).
+        <ul class="blist" style="margin-top:8px">
+          <li><strong>Directa:</strong> La entidad financiera es dueña desde un primer momento de todo el "paquete" accionario emitido.</li>
+          <li><strong>Indirecta:</strong> El underwriter pasa a ser dueño de las acciones que -trascurrido un determinado plazo- no hayan podido ser colocadas directamente por la sociedad emisora.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="label">No en Firme</div>
+      <div class="value">El underwriter adelanta los fondos pertinentes, pero a título de préstamo, asumiendo la obligación de procurar la colocación de las acciones emitidas dentro de un plazo convenido.</div>
+    </div>
+  </div>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Derechos de la Emisora</h4>
+      <ol class="alist">
+        <li>Exigir acción eficaz del underwriter</li>
+        <li>Exigir la obtención de la autorización por el underwriter</li>
+        <li>Solicitar información sobre experiencia, solvencia, etc,… del underwriter</li>
+        <li>Respeto del precio de oferta y el pago convenido</li>
+      </ol>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones de la Emisora</h4>
+      <ol class="alist">
+        <li>Información total a colocadora sobre la emisión a gestionarse (precio, plazos, historial, etc)</li>
+        <li>No ofertar a otra colocadora. Exclusividad (salvo pacto en contrario)</li>
+        <li>No vender títulos valores ofertados para colocación</li>
+        <li>Pagar la comisión convenida sobre el monto total de emisión</li>
+        <li>Pagar gastos operativos (salvo pacto en contrario)</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="oblig-cols">
+    <div class="oblig-col">
+      <h4>Derechos del Underwriter</h4>
+      <ol class="alist">
+        <li>Hacer respetar precio</li>
+        <li>Exigir entrega de títulos colocados que sean en el mercado</li>
+        <li>Requerir pagos de sus comisiones, si así se han pactado</li>
+      </ol>
+    </div>
+    <div class="oblig-col">
+      <h4>Obligaciones del Underwriter</h4>
+      <ol class="alist">
+        <li>Gestionar autorización para la emisión de títulos</li>
+        <li>Adquirir totalidad de la emisión (en firme)</li>
+        <li>Respetar precio y condiciones de emisora</li>
+        <li>Gestionar colocación y adquirir saldo en colocación garantizada</li>
+      </ol>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>
